@@ -1,4 +1,29 @@
 // PRIMARY COLORS
-$color-primary: #1a6874;
-$color-primary-light: #7ad3e1;
+$color-primary-light: #eefafb;
+$color-primary-100: #bce9f0;
+$color-primary-300: #7ad3e1;
+$color-primary-500: #32bad0;
+$color-primary-700: #1a6874;
+$color-primary-900: #134b53;
 $color-primary-dark: #0f3c43;
+
+// GRADIENTS
+$color-gradient-blue-light: radial-gradient(
+  74.84% 59.41% at 56.34% 50.5%,
+  $color-primary-100 0%,
+  $color-primary-500 47.92%,
+  $color-primary-700 92.71%
+);
+
+$color-gradient-blue-dark: radial-gradient(
+  50% 50% at 50% 50%,
+  $color-primary-500 33.77%,
+  $color-primary-700 91.5%
+);
+
+$color-gradient-red-to-green: radial-gradient(
+  81.08% 59.41% at 55.86% 50.5%,
+  rgba(238, 92, 48, 0.64) 0%,
+  rgba(207, 147, 42, 0.64) 38.54%,
+  rgba(149, 199, 43, 0.64) 83.85%
+);

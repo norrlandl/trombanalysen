@@ -1,6 +1,13 @@
 @use "colors.scss";
+@use "fonts.scss";
 
 .test {
-  color: colors.$color-primary-dark;
+  color: colors.$color-primary-500;
   background-color: colors.$color-primary-dark;
+  font-family: fonts.$font-quicksand;
+}
+
+.testfont {
+  color: colors.$color-primary-900;
+  font-family: fonts.$font-inter;
 }
