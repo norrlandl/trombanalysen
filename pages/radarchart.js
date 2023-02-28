@@ -1,6 +1,6 @@
-import radar from "./radar.module.scss";
+import radar from "./radarchart.module.scss";
 
-export default function Radar() {
+export default function Radarchart() {
   return (
     <>
       <h1 className={radar.testfont}>Radar Chart</h1>

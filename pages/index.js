@@ -1,11 +1,15 @@
 import { Fragment } from "react";
-// import variables from "../styles/variables.module.scss";
+import Link from "next/link";
+import Head from "next/head";
+import Navbar from "@/components/navbar";
+import Start from "@/components/start";
 
 function HomePage() {
   return (
     <Fragment>
-      <h1>Hej SASS</h1>
-      <h3>Hello</h3>
+      {/* <Navbar />
+      <Head></Head> */}
+      <Start />
     </Fragment>
   );
 }

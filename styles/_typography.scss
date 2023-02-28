@@ -1,0 +1,58 @@
+//IMPORTED FONTS
+$font-quicksand: var(--font-quicksand);
+$font-inter: var(--font-inter);
+$font_heebo: var(--font-heebo);
+
+// body {
+//   font-family: "Lato", sans-serif;
+//   font-weight: 400;
+//   /*font-size: 16px;*/
+//   line-height: 1.7;
+//   color: $color-grey-dark;
+// }
+
+//HEADINGS
+.heading_h1 {
+  font-size: 6.4rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  // color: $color-white;
+  text-transform: uppercase;
+  margin-bottom: 6rem;
+}
+
+.heading_h2 {
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 6rem;
+  // color: $color-white;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 2rem;
+}
+
+.heading_h3 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.heading_h4 {
+  font-size: 2.4rem;
+  font-weight: 500;
+  // text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin: 2rem 0;
+}
+
+.heading_h5 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+}

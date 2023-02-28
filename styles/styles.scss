@@ -1,5 +1,30 @@
 @use "colors.scss";
+@use "typography.scss";
 
 body {
-  background-color: colors.$color-primary-light;
+  font-family: typography.$font-inter;
+  color: rgb(78, 78, 78);
+  background-color: colors.$color-default-background-light;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.flexContainer {
+  display: flex;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: typography.$font-heebo;
+  color: colors.$color-grey-900;
+}
+
+p {
+  font-family: typography.$font-heebo;
+  color: colors.$color-grey-700;
+  font-weight: 400;
+  letter-spacing: 0rem;
 }
