@@ -4,7 +4,8 @@ import { Fragment } from "react";
 function HomePage() {
   return (
     <Fragment>
-      <h3>Hej SASS</h3>
+      <h1>Hej SASS</h1>
+      <h3>Hello</h3>
     </Fragment>
   );
 }
