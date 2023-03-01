@@ -2,6 +2,10 @@ import styles from "./index.module.scss";
 import Image from "next/image";
 import img from "../../public/img.svg";
 
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 export default function Login() {
   return (
     <section className={styles.login}>
@@ -45,12 +49,17 @@ export default function Login() {
             Password
           </label>
 
-          <button type="submit" className={`${styles.btn} ${styles.btn__big}`}>
+          <button
+            type="submit"
+            className={`${styles.btn} ${styles.btn__big}`}
+            href="../radarchart"
+          >
             Logga in
           </button>
           <div className={styles.login__form_forgot}>
             <a>Kom ihåg</a>
             <a>Glömt lösenord?</a>
+            <Link href="/landing">Radar chart</Link>
           </div>
         </form>
       </div>
