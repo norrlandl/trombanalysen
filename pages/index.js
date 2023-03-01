@@ -7,8 +7,8 @@ import Start from "@/components/start";
 function HomePage() {
   return (
     <Fragment>
-      {/* <Navbar />
-      <Head></Head> */}
+      <Navbar />
+      {/* <Head></Head> */}
       <Start />
     </Fragment>
   );

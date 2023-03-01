@@ -3,6 +3,10 @@ $font-quicksand: var(--font-quicksand);
 $font-inter: var(--font-inter);
 $font_heebo: var(--font-heebo);
 
+//FONT SIZES
+
+$font-size-default: 1.6rem;
+
 // body {
 //   font-family: "Lato", sans-serif;
 //   font-weight: 400;
@@ -22,13 +26,13 @@ $font_heebo: var(--font-heebo);
 }
 
 .heading_h2 {
-  font-size: 4.8rem;
+  font-size: 4.4rem;
   font-weight: 700;
   line-height: 6rem;
   // color: $color-white;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .heading_h3 {

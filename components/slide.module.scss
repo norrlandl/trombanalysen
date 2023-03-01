@@ -5,17 +5,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: colors.$color-primary-700;
   width: 50vw;
+  padding: 0 6rem;
+  background-color: colors.$color-primary-700;
 
   &__item {
     display: flex;
     flex-direction: column;
-    // padding: 0 6rem;
-    background-color: rgb(100, 100, 100);
+    // background-color: rgb(100, 100, 100);
     justify-content: space-between;
-    min-height: 600px;
-    // width: 90%;
+    padding-top: 5rem;
+    min-height: 65rem;
+    max-width: 50rem;
   }
 
   &__imgWrapper {
@@ -26,20 +27,19 @@
   }
 
   &__img {
-    width: 70%;
+    width: 100%;
     height: auto;
   }
 
   &__heading {
-    padding: 0 10rem;
+    padding: 0 2rem;
     color: colors.$color-white;
   }
 
   &__text {
     text-align: center;
     font-size: 1.6rem;
-    // margin-top: 6rem;
-    padding: 0 6rem;
+    // padding: 0 6rem;
     // background-color: rgb(61, 61, 61);
     p {
       color: colors.$color-grey-100;
@@ -52,7 +52,7 @@
     background-color: colors.$color-primary-900;
     border-radius: 50%;
     display: inline-block;
-    margin-top: 2rem;
+    margin-top: 3rem;
 
     &:not(:last-child) {
       margin-right: 1.5rem;

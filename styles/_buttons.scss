@@ -1,0 +1,35 @@
+@use "typography.scss";
+@use "colors.scss";
+
+.btn {
+  &,
+  &:link,
+  &:visited {
+    // text-transform: uppercase;
+    font-size: typography.$font-size-default;
+    font-family: typography.$font-quicksand;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.05rem;
+    padding: 0 3.2rem;
+    border-radius: 0.4rem;
+    background-color: colors.$color-primary-900;
+    color: colors.$color-white;
+    height: 5rem;
+    // display: inline-block;
+    // transition: all 0.2s;
+    // position: relative;
+
+    //Change for the <button> element
+    border: none;
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: colors.$color-primary-dark;
+  }
+
+  &__big {
+    width: 100%;
+  }
+}

@@ -1,10 +1,13 @@
 import styles from "./index.module.scss";
+import Image from "next/image";
+import img from "../../public/img.svg";
 
 export default function Login() {
   return (
     <section className={styles.login}>
       <div className={styles.login__item}>
         <div className={styles.login__text}>
+          <Image src={img} className={styles.login__img} alt="logo" />
           <h4 className={`${styles.heading_h2} ${styles.login__heading}`}>
             Välkommen till trombanalysen
           </h4>
@@ -41,7 +44,14 @@ export default function Login() {
           <label className={styles.form__label} for="password">
             Password
           </label>
-          <button type="submit">Submit</button>
+
+          <button type="submit" className={`${styles.btn} ${styles.btn__big}`}>
+            Logga in
+          </button>
+          <div className={styles.login__form_forgot}>
+            <a>Kom ihåg</a>
+            <a>Glömt lösenord?</a>
+          </div>
         </form>
       </div>
     </section>
