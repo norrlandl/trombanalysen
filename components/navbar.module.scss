@@ -1,4 +1,5 @@
 @use "colors.scss";
+@use "mixins.scss";
 
 .navbar {
   width: 100%;
@@ -8,7 +9,7 @@
   justify-content: space-between;
   background-color: transparent;
   color: white;
-  // padding: 0 6rem;
+  @include mixins.paddingDefault;
 
   position: absolute;
   top: 0;

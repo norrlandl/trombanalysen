@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Navbar from "@/components/navbar";
-import Start from "@/components/start";
+import Navbar from "@/components/Navbar";
+import Start from "@/components/Start";
 
 function HomePage() {
   return (

@@ -8,7 +8,7 @@ import { Heebo } from "@next/font/google";
 
 //Next
 import { Fragment } from "react";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],

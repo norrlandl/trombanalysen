@@ -1,4 +1,4 @@
-import styles from "./slide.module.scss";
+import styles from "./Slide.module.scss";
 import Image from "next/image";
 import slideImg from "../public/slide-1.svg";
 

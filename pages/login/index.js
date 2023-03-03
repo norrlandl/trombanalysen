@@ -51,7 +51,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className={`${styles.btn} ${styles.btn__big}`}
+            className={`${styles.btn} ${styles.btn__primary} ${styles.btn__big}`}
             href="../radarchart"
           >
             Logga in

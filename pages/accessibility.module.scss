@@ -1,0 +1,72 @@
+@use "colors.scss";
+@use "typography.scss";
+@use "buttons.scss";
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // height: 100vh;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  padding: 12rem 0;
+  //background-color: lightcoral;
+
+  &:first-child {
+    align-items: flex-start;
+  }
+
+  &:nth-child(2) {
+    align-items: center;
+  }
+
+  &__text {
+    max-width: 50rem;
+    //background-color: antiquewhite;
+
+    a {
+      margin-top: 5rem;
+    }
+  }
+
+  &__img {
+    padding: 4rem 0;
+  }
+}
+
+.logo__mini {
+  max-width: 4.6rem;
+  height: auto;
+}
+
+.heading_h5 {
+  margin-top: 3rem;
+  color: colors.$color-primary-700;
+}
+
+.logo {
+  max-width: 30rem;
+  height: auto;
+  margin-top: 10rem;
+}
+
+.item__fullwidth {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  width: 80vw;
+  // padding: 4rem 6rem;
+  padding: 4rem 0rem;
+  height: 20rem;
+  //background-color: lightcoral;
+  position: relative;
+
+  a:nth-child(3) {
+    position: absolute;
+    right: 0;
+  }
+}

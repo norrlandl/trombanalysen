@@ -9,12 +9,6 @@ body {
   line-height: 1.6;
 }
 
-.flexContainer {
-  display: flex;
-  height: 100vh;
-  // justify-content: space-between;
-}
-
 h1,
 h2,
 h3,
@@ -26,7 +20,12 @@ h5 {
 
 p {
   font-family: typography.$font-heebo;
-  color: colors.$color-grey-700;
+  color: colors.$color-grey-500;
   font-weight: 400;
   letter-spacing: 0rem;
+}
+
+::selection {
+  background: colors.$color-primary-700;
+  color: colors.$color-white;
 }

@@ -13,8 +13,10 @@ export default function Landing() {
           <h1 className={styles.heading_h1}>
             Id volutpat enim nulla platea arcu tincidunt turpis.
           </h1>
-          <Link className={styles.btn__link} href="/radarchart">
-            Radar chart
+          <Link href="/radarchart" legacyBehavior>
+            <a className={`${styles.btn} ${styles.btn__primary}`}>
+              Results & score &rarr;
+            </a>
           </Link>
         </div>
       </div>

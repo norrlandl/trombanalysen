@@ -5,43 +5,53 @@
   &,
   &:link,
   &:visited {
-    // text-transform: uppercase;
     display: inline-block;
     font-size: typography.$font-size-default;
     font-family: typography.$font-quicksand;
+    letter-spacing: 0.05rem;
     font-weight: 500;
     text-decoration: none;
-    letter-spacing: 0.05rem;
-    padding: 0 3.2rem;
-    border: none;
     border-radius: 0.4rem;
-    background-color: colors.$color-primary-900;
-    color: colors.$color-white;
+    // border: none;
     height: 5rem;
     cursor: pointer;
+    padding: 1.2rem 3.2rem 1.4rem 3.2rem;
   }
 
-  &:hover {
-    background-color: colors.$color-primary-dark;
+  &__primary {
+    background-color: colors.$color-primary-900;
+    color: colors.$color-white;
+    border: none;
+
+    &:hover {
+      background-color: colors.$color-primary-dark;
+    }
+  }
+
+  &__secondary {
+    // background-color: colors.$color-primary-600;
+    // color: colors.$color-white;
+    border: 3px solid colors.$color-primary-600;
+    color: colors.$color-grey-700;
+    padding: 0.9rem 3.2rem 1.7rem 3.2rem !important;
+
+    &:hover {
+      background-color: colors.$color-primary-600;
+      color: colors.$color-white;
+    }
+  }
+
+  &__tertiary {
+    background-color: colors.$color-grey-200;
+    color: colors.$color-grey-700;
+    border: none;
+
+    &:hover {
+      background-color: colors.$color-grey-300;
+    }
   }
 
   &__big {
     width: 100%;
-  }
-
-  &__link {
-    display: inline-block;
-    color: colors.$color-white;
-    font-size: typography.$font-size-default;
-    font-family: typography.$font-quicksand;
-    letter-spacing: 0.05rem;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 0.4rem;
-    background-color: colors.$color-primary-900;
-    padding: 1.3rem;
-    text-align: center;
-    max-width: 20rem;
-    margin-top: 6rem;
   }
 }

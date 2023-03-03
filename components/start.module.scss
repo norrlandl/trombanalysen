@@ -1,4 +1,9 @@
+@use "mixins.scss";
+
 .flexContainer {
-  display: flex;
-  height: 100vh;
+  @include mixins.flexContainer;
+}
+
+.noPadding {
+  padding: 0;
 }

@@ -14,10 +14,12 @@ export default function Radarchart() {
           <p className={styles.paragraph}>
             Leo quis cursus at risus nunc diam morbi adipiscing. Semper quisque
             quis integer senectus elementum. Aliquet massa tellus vehicula fames
-            aliquet.{" "}
+            aliquet.
           </p>
-          <Link className={styles.btn__link} href="/radarchart">
-            Radar chart
+          <Link href="/accessibility" legacyBehavior>
+            <a className={`${styles.btn} ${styles.btn__primary}`}>
+              Dive deeper &rarr;
+            </a>
           </Link>
         </div>
       </div>
