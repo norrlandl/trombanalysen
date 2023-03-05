@@ -11,3 +11,9 @@
 @mixin paddingDefault {
   padding: 0 6rem;
 }
+
+@mixin greyIcon {
+  width: 5rem;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
