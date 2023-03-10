@@ -1,15 +1,14 @@
 import { Fragment } from "react";
-import Link from "next/link";
-import Head from "next/head";
 import Navbar from "@/components/Navbar";
-import Start from "@/components/Start";
+import Start from "@/pages/login/index";
+import Footer from "@/components/Footer";
 
 function HomePage() {
   return (
     <Fragment>
       <Navbar />
-      {/* <Head></Head> */}
       <Start />
+      <Footer />
     </Fragment>
   );
 }

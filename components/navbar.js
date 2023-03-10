@@ -1,10 +1,11 @@
 import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import toggle from "../public/toggle.svg";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <div className={styles.navbar}>
+    <nav className={styles.navbar}>
       <div>
         <Image
           src={toggle}
@@ -13,8 +14,10 @@ export default function Navbar() {
         />
       </div>
       <div>
-        <a href="#">HAM MENU</a>
+        <Link href="/" legacyBehavior>
+          <a>HAM MENU</a>
+        </Link>
       </div>
-    </div>
+    </nav>
   );
 }

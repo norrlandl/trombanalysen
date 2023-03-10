@@ -1,9 +1,0 @@
-@use "mixins.scss";
-
-.flexContainer {
-  @include mixins.flexContainer;
-}
-
-.noPadding {
-  padding: 0;
-}

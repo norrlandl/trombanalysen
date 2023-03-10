@@ -1,49 +1,9 @@
-@use "colors.scss";
-@use "typography.scss";
-@use "forms.scss";
-@use "buttons.scss";
+@use "mixins.scss";
 
-.login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50vw;
+.flexContainer {
+  @include mixins.flexContainer;
+}
 
-  &__item {
-    display: flex;
-    flex-direction: column;
-    // background-color: rgb(206, 173, 173);
-    justify-content: space-between;
-    min-height: 65rem;
-    max-width: 50rem;
-    align-items: center;
-  }
-
-  &__text {
-    text-align: center;
-    font-size: 1.6rem;
-  }
-
-  &__img {
-    width: 5rem;
-    height: auto;
-  }
-
-  &__form {
-    max-width: 38rem;
-
-    label {
-      margin-bottom: 1.2rem;
-    }
-
-    label:last-of-type {
-      margin-bottom: 4rem;
-    }
-
-    &_forgot {
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-    }
-  }
+.noPadding {
+  padding: 0;
 }

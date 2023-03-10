@@ -1,6 +1,6 @@
-import styles from "./Slide.module.scss";
+import styles from "./slide.module.scss";
 import Image from "next/image";
-import slideImg from "../public/slide-1.svg";
+import slideImg from "../../public/slide-1.svg";
 
 export default function Slide() {
   return (
