@@ -26,7 +26,7 @@ export default function Layout({ children }) {
     <div
       className={`${inter.variable} ${quicksand.variable} ${heebo.variable}`}
     >
-      <Navbar />
+      {/* <Navbar /> */}
       {children}
       <Footer />
     </div>
