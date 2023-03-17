@@ -1,0 +1,79 @@
+.heading_h1 {
+  font-size: 6.4rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  line-height: 7rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.heading_h2 {
+  font-size: 4.4rem;
+  font-weight: 700;
+  line-height: 6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.heading_h3 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.heading_h4 {
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: 0.2rem;
+  margin: 2rem 0;
+}
+
+.heading_h5 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin: 1rem 0;
+}
+
+.paragraph {
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+}
+
+body {
+  font-family: var(--font-inter);
+  color: rgb(78, 78, 78);
+  background-color: #fbfbfb;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-heebo);
+  color: #232323;
+}
+
+p {
+  font-family: var(--font-heebo);
+  color: #8a8a8a;
+  font-weight: 400;
+  letter-spacing: 0rem;
+}
+
+::-moz-selection {
+  background: #1a6874;
+  color: #ffffff;
+}
+
+::selection {
+  background: #1a6874;
+  color: #ffffff;
+}/*# sourceMappingURL=styles.css.map */
