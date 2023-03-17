@@ -1,29 +1,35 @@
 import styles from "./index.module.scss";
 import prisma from "../../../lib/prisma";
 
-export async function getStaticProps() {
-  const users = await prisma.user.findMany();
-
-  return {
-    props: { users },
-  };
-}
-
-// export async function getServerSideProps() {
+// export async function getStaticProps() {
 //   const users = await prisma.user.findMany();
+
+//   console.log(users);
+
 //   return {
-//     props: {
-//       users: JSON.parse(JSON.stringify(users)),
-//     },
+//     props: { users },
 //   };
 // }
+
+export async function getServerSideProps() {
+  const users = await prisma.user.findMany();
+  return {
+    props: {
+      users: JSON.parse(JSON.stringify(users)),
+    },
+  };
+}
 
 export default function Read({ users }) {
   return (
     <div className="">
       <ul>
         {users.map((user) => (
-          <li key={user.id}>{user.company}</li>
+          <li key={user.id}>
+            {user.company}
+            {user.role}
+            {user.firstName}
+          </li>
         ))}
       </ul>
 
