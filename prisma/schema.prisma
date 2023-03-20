@@ -12,14 +12,19 @@ datasource db {
 
 
 model User {
-  id        String @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime 
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   company   String
-  role      String 
+  role      Role    @default(BASIC)
   firstName String?
   lastName  String?
   email     String?
-  password  String?
+  password  String? 
 }
 
+enum Role {
+  BASIC
+  ADMIN
+  DEVELOPER
+}

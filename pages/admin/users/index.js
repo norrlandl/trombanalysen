@@ -1,16 +1,6 @@
 import styles from "./index.module.scss";
 import prisma from "../../../lib/prisma";
 
-// export async function getStaticProps() {
-//   const users = await prisma.user.findMany();
-
-//   console.log(users);
-
-//   return {
-//     props: { users },
-//   };
-// }
-
 export async function getServerSideProps() {
   const users = await prisma.user.findMany();
   return {
@@ -21,15 +11,21 @@ export async function getServerSideProps() {
 }
 
 export default function Read({ users }) {
+  // const submitHandler = async () => {
+  //   const { data } = await fetch.user();
+  // };
+
   return (
     <div className="">
       <ul>
         {users.map((user) => (
-          <li key={user.id}>
-            {user.company}
-            {user.role}
-            {user.firstName}
-          </li>
+          <div key={user.id}>
+            <h2>{user.company}</h2>
+            <h2>{user.role}</h2>
+            <h2>{user.firstName}</h2>
+            <h2>{user.lastName}</h2>
+            <i>{user.createdAt}</i>
+          </div>
         ))}
       </ul>
 
@@ -78,6 +74,8 @@ export default function Read({ users }) {
           className={styles.form__input}
           id="password"
         ></input>
+
+        {/* <button onSubmit={submitHandler}></button> */}
       </form>
     </div>
   );
