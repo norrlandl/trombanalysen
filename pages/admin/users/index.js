@@ -18,8 +18,8 @@ export async function getServerSideProps() {
 }
 
 export default function Read({ users }) {
-  const deleteHandler = (role) => {
-    console.log(role);
+  const deleteHandler = (e) => {
+    console.log(e.target);
   };
 
   return (
@@ -27,17 +27,21 @@ export default function Read({ users }) {
       <ul>
         {users.map((user) => (
           <div key={user.id}>
-            <p>{user.company}</p>
-            <i>
+            <h2>
+              {user.firstName} {user.lastName}
+            </h2>
+            <h5>{user.company}</h5>
+            {/* <i>
               <b>ID:{user.id}</b>
-            </i>
-            <h2>{user.role}</h2>
-            <h1>{user.firstName}</h1>
-            <h4>{user.lastName}</h4>
-            <i>{user.createdAt}</i>
-            <button onClick={deleteHandler} role={user.role}>
+            </i> */}
+            <p>{user.role}</p>
+
+            {/* <i>{user.createdAt}</i> */}
+            <button onClick={deleteHandler} testar={user.firstName}>
               UPDATED
             </button>
+
+            <p>-------</p>
           </div>
         ))}
       </ul>
