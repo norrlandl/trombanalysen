@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 import styles from "./index.module.scss";
 import prisma from "../../../lib/prisma";
@@ -37,9 +38,14 @@ export default function Read({ users }) {
             <p>{user.role}</p>
 
             {/* <i>{user.createdAt}</i> */}
-            <button onClick={deleteHandler} testar={user.firstName}>
+            <Link href={"/admin/users/update"} key={user.id} legacyBehavior>
+              <a>
+                <h3>Uppdatera {user.firstName}</h3>
+              </a>
+            </Link>
+            {/* <button onClick={deleteHandler} testar={user.firstName}>
               UPDATED
-            </button>
+            </button> */}
 
             <p>-------</p>
           </div>
