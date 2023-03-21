@@ -4,7 +4,12 @@ import styles from "./index.module.scss";
 import prisma from "../../../lib/prisma";
 
 export async function getServerSideProps() {
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
   return {
     props: {
       users: JSON.parse(JSON.stringify(users)),
@@ -13,9 +18,9 @@ export async function getServerSideProps() {
 }
 
 export default function Read({ users }) {
-  // const submitHandler = async () => {
-  //   const { data } = await fetch.user();
-  // };
+  const deleteHandler = (role) => {
+    console.log(role);
+  };
 
   return (
     <div className="">
@@ -27,9 +32,12 @@ export default function Read({ users }) {
               <b>ID:{user.id}</b>
             </i>
             <h2>{user.role}</h2>
-            <h3>{user.firstName}</h3>
+            <h1>{user.firstName}</h1>
             <h4>{user.lastName}</h4>
             <i>{user.createdAt}</i>
+            <button onClick={deleteHandler} role={user.role}>
+              UPDATED
+            </button>
           </div>
         ))}
       </ul>
