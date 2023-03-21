@@ -4,7 +4,7 @@ import Router from "next/router";
 export default function Create() {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
   // const [message, setMessage] = useState("");
 
   // const handleSubmit = async ({ company, role }) => {
@@ -16,15 +16,47 @@ export default function Create() {
   //   console.log(data);
   // };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const body = { company, role };
+  //   await fetch(`/api/post`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(body),
+  //   });
+  //   console.log({ company, role });
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = { company, role };
-    await fetch(`/api/post`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    console.log({ company, role });
+    setError("");
+    if (company && role) {
+      // send a request to the server.
+      try {
+        const body = {
+          // id,
+          company,
+          role,
+          // firstName,
+          // lastName,
+          // email,
+          // password,
+          // createdAt,
+          // updatedAt,
+        };
+        await fetch(`/api/post`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        await Router.push("/admin/users");
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setError("All fields are required");
+      return;
+    }
   };
 
   // const handleSubmit = async (e) => {
@@ -58,11 +90,13 @@ export default function Create() {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
+            name="company"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
           />
           <input
             type="text"
+            name="role"
             value={role}
             onChange={(e) => setRole(e.target.value)}
           />

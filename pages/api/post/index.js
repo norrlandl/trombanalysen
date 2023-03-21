@@ -1,18 +1,4 @@
-// import prisma from "../../../lib/prisma";
-
-// export default async function handler(req, res) {
-//   const { company, role, published } = req.body;
-//   const result = await prisma.user.create({
-//     data: {
-//       company: company,
-//       role: role,
-//       published: published,
-//     },
-//   });
-//   res.json(result);
-// }
-
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../lib/prisma";
 
 const prisma = new PrismaClient();
 
@@ -21,14 +7,31 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "POST":
-      const { company, role } = req.body;
-      const user = await prisma.user.create({
+      const {
+        id,
+        company,
+        role,
+        firstName,
+        lastName,
+        email,
+        password,
+        createdAt,
+        updatedAt,
+      } = req.body;
+      const newUser = await prisma.user.create({
         data: {
-          company,
-          role,
+          id: id,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
+          company: company,
+          role: role,
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
         },
       });
-      res.status(201).json(user);
+      res.status(201).json(newUser);
       break;
     default:
       // res.setHeader("Allow", ["GET", "POST"]);
