@@ -26,6 +26,9 @@ const prisma = new PrismaClient();
 /*
 
 ***** PRISMA *****
+
+CRUD: https://www.youtube.com/watch?v=jvXct3Ud18k
+
 https://www.youtube.com/watch?v=L5JU1oR29TM
 
 https://www.youtube.com/watch?v=aim8Mk-ETK0

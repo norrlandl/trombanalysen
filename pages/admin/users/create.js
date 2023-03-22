@@ -4,6 +4,8 @@ import Router from "next/router";
 export default function Create() {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
   // const [message, setMessage] = useState("");
 
@@ -17,8 +19,8 @@ export default function Create() {
           // id,
           company,
           role,
-          // firstName,
-          // lastName,
+          firstName,
+          lastName,
           // email,
           // password,
           // createdAt,
@@ -55,6 +57,18 @@ export default function Create() {
             name="role"
             value={role}
             onChange={(e) => setRole(e.target.value)}
+          />
+          <input
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
           <button type="submit">Submit</button>
         </form>

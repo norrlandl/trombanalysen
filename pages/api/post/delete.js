@@ -1,17 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   const { method } = req;
 
   switch (method) {
     case "POST":
-      const { company, role, id } = req.body;
-      const user = await prisma.user.create({
-        data: {
-          company,
-          role,
+      const { id } = req.body;
+      const user = await prisma.user.delete({
+        where: {
           id,
         },
       });
@@ -19,6 +17,7 @@ export default async function handler(req, res) {
       break;
     default:
       res.setHeader("Allow", ["POST"]);
+      // res.setHeader("Allow", ["GET"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }
