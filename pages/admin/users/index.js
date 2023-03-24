@@ -121,7 +121,7 @@ export default function Users() {
             setInputedData({ ...inputedData, company: e.target.value })
           }
         ></input>
-        <input
+        {/* <input
           value={inputedData.role}
           type="text"
           placeholder="role"
@@ -129,7 +129,20 @@ export default function Users() {
           onChange={(e) =>
             setInputedData({ ...inputedData, role: e.target.value })
           }
-        ></input>
+        ></input> */}
+        <select
+          value={inputedData.role}
+          type="text"
+          placeholder="role"
+          id="role"
+          onChange={(e) =>
+            setInputedData({ ...inputedData, role: e.target.value })
+          }
+        >
+          <option value="BASIC">BASIC</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="DEVELOPER">DEVELOPER</option>
+        </select>
         <input
           value={inputedData.firstName}
           type="text"
@@ -158,8 +171,11 @@ export default function Users() {
         {data.map(({ id, company, role, firstName, lastName }) => {
           return (
             <div key={id}>
-              <h2>{firstName}</h2>
+              <h2>
+                {firstName} {lastName}
+              </h2>
               <h3>{company}</h3>
+              <p>{role}</p>
               <button onClick={() => handleDelete(id)}>Delete User</button>
               <button
                 onClick={() =>

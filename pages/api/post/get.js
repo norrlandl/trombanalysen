@@ -7,7 +7,11 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const users = await prisma.user.findMany();
+      const users = await prisma.user.findMany({
+        orderBy: {
+          firstName: "asc",
+        },
+      });
       res.status(201).json(users);
       break;
     default:

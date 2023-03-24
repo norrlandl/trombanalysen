@@ -1,5 +1,5 @@
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Footer from "../Footer";
+import Navbar from "./navbar";
 
 //Google fonts
 import { Inter } from "@next/font/google";
