@@ -168,7 +168,13 @@ export default function Users() {
               >
                 Edit User
               </button>
-              {/* <ButtonTertiary link="/">Primary Button</ButtonTertiary> */}
+              <ButtonTertiary
+                link={`/admin/users/${id}`}
+                id={id}
+                company={company}
+              >
+                Details
+              </ButtonTertiary>
             </div>
           );
         })}
