@@ -25,6 +25,42 @@ const prisma = new PrismaClient();
 
 /*
 
+***** CODE LIBARY *****
+
+Create:
+
+ const handleSubmit = async (e) => {
+    if (company && role) {
+      // send a request to the server.
+      try {
+        const body = {
+          // id,
+          company,
+          role,
+          firstName,
+          lastName,
+          // email,
+          // password,
+          // createdAt,
+          // updatedAt,
+        };
+        await fetch(`/api/post`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        await Router.push("/admin/users");
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setError("All fields are required");
+      return;
+    }
+  };
+
+
+
 ***** PRISMA *****
 
 CRUD: https://www.youtube.com/watch?v=jvXct3Ud18k

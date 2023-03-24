@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./index.module.scss";
+import UserList from "@/components/users/user-list";
+import {
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonTertiary,
+} from "@/components/ui/buttons";
 
 export default function Users() {
   const [data, setData] = useState([]);
@@ -19,6 +25,7 @@ export default function Users() {
     const response = await fetch(`/api/post/get`);
     const json = await response.json();
     setData(json);
+    // console.log(json);
   };
 
   const handleCreate = async (e) => {
@@ -145,6 +152,8 @@ export default function Users() {
       </form>
 
       <h2>READ</h2>
+      {/* <UserList items={data}/> */}
+
       <div>
         {data.map(({ id, company, role, firstName, lastName }) => {
           return (
@@ -159,6 +168,7 @@ export default function Users() {
               >
                 Edit User
               </button>
+              {/* <ButtonTertiary link="/">Primary Button</ButtonTertiary> */}
             </div>
           );
         })}
