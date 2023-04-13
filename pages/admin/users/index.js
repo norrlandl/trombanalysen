@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./index.module.scss";
+import NewUserForm from "./newUserForm";
+import UserList from "@/components/users/userList";
 
-export default function Users() {
+export default function Users(props) {
+  function addUserHandler(userData) {
+    fetch("/api/post/create", {
+      method: "POST",
+      body: JSON.stringify(userData),
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
   const [data, setData] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [inputedData, setInputedData] = useState({
@@ -50,7 +60,7 @@ export default function Users() {
     }
   };
 
-  const handleDelete = async (id) => {
+  const deleteUserHandler = async (id) => {
     console.log(id);
     const response = await fetch(`/api/post/delete`, {
       method: "POST",
@@ -63,6 +73,20 @@ export default function Users() {
     // console.log(json);
     fetchData();
   };
+
+  // const handleDelete = async (id) => {
+  //   console.log(id);
+  //   const response = await fetch(`/api/post/delete`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       id,
+  //     }),
+  //   });
+  //   const json = await response.json();
+  //   // console.log(json);
+  //   fetchData();
+  // };
 
   const handleEdit = async (id, company, role, firstName, lastName) => {
     console.log(id, company, role, firstName, lastName);
@@ -101,8 +125,11 @@ export default function Users() {
 
   return (
     <div>
+      <h1>Users CRUD with component</h1>
+      <NewUserForm onAddUser={addUserHandler} />
+      <h2>READ with component</h2>
+      <UserList users={data} onDeleteUser={deleteUserHandler} />
       <h1>Users CRUD</h1>
-
       <h2>CREATE</h2>
       <form onSubmit={handleCreate}>
         <input
@@ -143,7 +170,6 @@ export default function Users() {
         ></input>
         <button type="submit">Submit</button>
       </form>
-
       <h2>READ</h2>
       <div>
         {data.map(({ id, company, role, firstName, lastName }) => {
