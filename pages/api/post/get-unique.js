@@ -7,12 +7,13 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const users = await prisma.user.findMany({
-        orderBy: {
-          firstName: "asc",
+      const user = await prisma.user.findUnique({
+        where: {
+          id: "e56ab25a-7320-497b-af20-13a71027c205",
+          // id: userId,
         },
       });
-      res.status(201).json(users);
+      res.status(201).json(user);
       break;
     default:
       // res.setHeader("Allow", ["GET", "POST"]);

@@ -1,6 +1,6 @@
 import styles from "./Navbar.module.scss";
 import Image from "next/image";
-import toggle from "../public/toggle.svg";
+import toggle from "../../public/toggle.svg";
 import Link from "next/link";
 
 export default function Navbar() {

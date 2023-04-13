@@ -3,8 +3,8 @@ import "../styles/styles.scss";
 
 //Next
 import { Fragment } from "react";
-import Navbar from "@/components/Navbar";
-import Layout from "@/components/Layout";
+import Navbar from "@/components/layout/navbar";
+import Layout from "@/components/layout/layout";
 
 // //Google fonts
 // import { Inter } from "@next/font/google";

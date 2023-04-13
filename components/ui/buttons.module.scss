@@ -1,0 +1,57 @@
+@use "typography.scss";
+@use "colors.scss";
+
+.btn {
+  &,
+  &:link,
+  &:visited {
+    display: inline-block;
+    font-size: typography.$font-size-default;
+    font-family: typography.$font-quicksand;
+    letter-spacing: 0.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0.4rem;
+    // border: none;
+    height: 5rem;
+    cursor: pointer;
+    padding: 1.2rem 3.2rem 1.4rem 3.2rem;
+  }
+
+  &__primary {
+    background-color: colors.$color-primary-900;
+    color: colors.$color-white;
+    border: none;
+
+    &:hover {
+      background-color: colors.$color-primary-dark;
+    }
+  }
+
+  &__secondary {
+    // background-color: colors.$color-primary-600;
+    // color: colors.$color-white;
+    border: 3px solid colors.$color-primary-600;
+    color: colors.$color-grey-700;
+    padding: 0.9rem 3.2rem 1.7rem 3.2rem !important;
+
+    &:hover {
+      background-color: colors.$color-primary-600;
+      color: colors.$color-white;
+    }
+  }
+
+  &__tertiary {
+    background-color: colors.$color-grey-200;
+    color: colors.$color-grey-700;
+    border: none;
+
+    &:hover {
+      background-color: colors.$color-grey-300;
+    }
+  }
+
+  &__big {
+    width: 100%;
+  }
+}

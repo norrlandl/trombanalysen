@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./index.module.scss";
+import {
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonTertiary,
+} from "@/components/ui/buttons";
 import NewUserForm from "./newUserForm";
 import UserList from "@/components/users/userList";
 
@@ -29,6 +34,7 @@ export default function Users(props) {
     const response = await fetch(`/api/post/get`);
     const json = await response.json();
     setData(json);
+    // console.log(json);
   };
 
   const handleCreate = async (e) => {
@@ -141,7 +147,7 @@ export default function Users(props) {
             setInputedData({ ...inputedData, company: e.target.value })
           }
         ></input>
-        <input
+        {/* <input
           value={inputedData.role}
           type="text"
           placeholder="role"
@@ -149,7 +155,20 @@ export default function Users(props) {
           onChange={(e) =>
             setInputedData({ ...inputedData, role: e.target.value })
           }
-        ></input>
+        ></input> */}
+        <select
+          value={inputedData.role}
+          type="text"
+          placeholder="role"
+          id="role"
+          onChange={(e) =>
+            setInputedData({ ...inputedData, role: e.target.value })
+          }
+        >
+          <option value="BASIC">BASIC</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="DEVELOPER">DEVELOPER</option>
+        </select>
         <input
           value={inputedData.firstName}
           type="text"
@@ -171,12 +190,17 @@ export default function Users(props) {
         <button type="submit">Submit</button>
       </form>
       <h2>READ</h2>
+      {/* <UserList items={data}/> */}
+
       <div>
         {data.map(({ id, company, role, firstName, lastName }) => {
           return (
             <div key={id}>
-              <h2>{firstName}</h2>
+              <h2>
+                {firstName} {lastName}
+              </h2>
               <h3>{company}</h3>
+              <p>{role}</p>
               <button onClick={() => handleDelete(id)}>Delete User</button>
               <button
                 onClick={() =>
@@ -185,6 +209,13 @@ export default function Users(props) {
               >
                 Edit User
               </button>
+              <ButtonTertiary
+                link={`/admin/users/${id}`}
+                id={id}
+                company={company}
+              >
+                Details
+              </ButtonTertiary>
             </div>
           );
         })}
