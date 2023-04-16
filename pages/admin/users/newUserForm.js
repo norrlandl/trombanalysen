@@ -32,7 +32,12 @@ export default function NewUserForm(props) {
         <input type="text" required id="company" ref={companyInputRef}></input>
 
         <label htmlFor="role">Role</label>
-        <input type="text" required id="role" ref={roleInputRef}></input>
+        <select type="text" required id="role" ref={roleInputRef}>
+          {" "}
+          <option value="BASIC">BASIC</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="DEVELOPER">DEVELOPER</option>
+        </select>
 
         <label htmlFor="firstName">First name</label>
         <input

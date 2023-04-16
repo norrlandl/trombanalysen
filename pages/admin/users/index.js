@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import fs from "fs/promises";
+import path from "path";
+
 import styles from "./index.module.scss";
 import {
   ButtonPrimary,
@@ -9,7 +11,9 @@ import {
 import NewUserForm from "./newUserForm";
 import UserList from "@/components/users/userList";
 
-export default function Users(props) {
+function Users(props) {
+  const [users, setUsers] = useState([]);
+
   function addUserHandler(userData) {
     fetch("/api/post/create", {
       method: "POST",
@@ -18,7 +22,19 @@ export default function Users(props) {
     });
   }
 
-  const [data, setData] = useState([]);
+  // // *** WORKING ***
+  // useEffect(() => {
+  //   fetch(`/api/post/get`)
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setUsers(data);
+  //       console.log(data);
+  //     });
+  // }, []);
+
+  // const [data, setData] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [inputedData, setInputedData] = useState({
     id: "",
@@ -28,43 +44,41 @@ export default function Users(props) {
     lastName: "",
   });
 
-  // console.log(inputedData);
-
   const fetchData = async () => {
     const response = await fetch(`/api/post/get`);
     const json = await response.json();
-    setData(json);
+    setUsers(json);
     // console.log(json);
   };
 
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    if (editMode) {
-      handleUpdate();
-    } else {
-      const response = await fetch(`/api/post/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          company: inputedData.company,
-          role: inputedData.role,
-          firstName: inputedData.firstName,
-          lastName: inputedData.lastName,
-        }),
-      });
-      const json = await response.json();
-      // console.log(json);
-      setInputedData({
-        id: "",
-        company: "",
-        role: "",
-        firstName: "",
-        lastName: "",
-      });
+  // // const handleCreate = async (e) => {
+  // //   e.preventDefault();
+  // //   if (editMode) {
+  // //     handleUpdate();
+  // //   } else {
+  // //     const response = await fetch(`/api/post/create`, {
+  // //       method: "POST",
+  // //       headers: { "Content-Type": "application/json" },
+  // //       body: JSON.stringify({
+  // //         company: inputedData.company,
+  // //         role: inputedData.role,
+  // //         firstName: inputedData.firstName,
+  // //         lastName: inputedData.lastName,
+  // //       }),
+  // //     });
+  // //     const json = await response.json();
+  // //     // console.log(json);
+  // //     setInputedData({
+  // //       id: "",
+  // //       company: "",
+  // //       role: "",
+  // //       firstName: "",
+  // //       lastName: "",
+  // //     });
 
-      fetchData();
-    }
-  };
+  // //     fetchData();
+  // //   }
+  // // };
 
   const deleteUserHandler = async (id) => {
     console.log(id);
@@ -76,7 +90,6 @@ export default function Users(props) {
       }),
     });
     const json = await response.json();
-    // console.log(json);
     fetchData();
   };
 
@@ -94,48 +107,53 @@ export default function Users(props) {
   //   fetchData();
   // };
 
-  const handleEdit = async (id, company, role, firstName, lastName) => {
-    console.log(id, company, role, firstName, lastName);
-    setInputedData({ id, company, role, firstName, lastName });
-    setEditMode(true);
-  };
+  // const handleEdit = async (id, company, role, firstName, lastName) => {
+  //   console.log(id, company, role, firstName, lastName);
+  //   setInputedData({ id, company, role, firstName, lastName });
+  //   setEditMode(true);
+  // };
 
-  const handleUpdate = async () => {
-    const response = await fetch(`/api/post/update`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: inputedData.id,
-        company: inputedData.company,
-        role: inputedData.role,
-        firstName: inputedData.firstName,
-        lastName: inputedData.lastName,
-      }),
-    });
-    const json = await response.json();
-    console.log(json);
-    setInputedData({
-      id: "",
-      company: "",
-      role: "",
-      firstName: "",
-      lastName: "",
-    });
-    setEditMode(false);
-    fetchData();
-  };
+  // const handleUpdate = async () => {
+  //   const response = await fetch(`/api/post/update`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       id: inputedData.id,
+  //       company: inputedData.company,
+  //       role: inputedData.role,
+  //       firstName: inputedData.firstName,
+  //       lastName: inputedData.lastName,
+  //     }),
+  //   });
+  //   const json = await response.json();
+  //   console.log(json);
+  //   setInputedData({
+  //     id: "",
+  //     company: "",
+  //     role: "",
+  //     firstName: "",
+  //     lastName: "",
+  //   });
+  //   setEditMode(false);
+  //   fetchData();
+  // };
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  const { admins } = props;
+
   return (
     <div>
+      {admins.map((users) => (
+        <li key={users.id}>{users.company}</li>
+      ))}
       <h1>Users CRUD with component</h1>
       <NewUserForm onAddUser={addUserHandler} />
       <h2>READ with component</h2>
-      <UserList users={data} onDeleteUser={deleteUserHandler} />
-      <h1>Users CRUD</h1>
+      <UserList users={users} onDeleteUser={deleteUserHandler} />
+      {/* <h1>Users CRUD</h1>
       <h2>CREATE</h2>
       <form onSubmit={handleCreate}>
         <input
@@ -147,15 +165,6 @@ export default function Users(props) {
             setInputedData({ ...inputedData, company: e.target.value })
           }
         ></input>
-        {/* <input
-          value={inputedData.role}
-          type="text"
-          placeholder="role"
-          id="role"
-          onChange={(e) =>
-            setInputedData({ ...inputedData, role: e.target.value })
-          }
-        ></input> */}
         <select
           value={inputedData.role}
           type="text"
@@ -190,8 +199,6 @@ export default function Users(props) {
         <button type="submit">Submit</button>
       </form>
       <h2>READ</h2>
-      {/* <UserList items={data}/> */}
-
       <div>
         {data.map(({ id, company, role, firstName, lastName }) => {
           return (
@@ -219,104 +226,22 @@ export default function Users(props) {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 }
 
-// export async function getServerSideProps() {
-//   const users = await prisma.user.findMany({
-//     orderBy: {
-//       createdAt: "desc",
-//     },
-//   });
+export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), "pages/api/post", "get.js");
+  const jsonData = await fs.readFile(filePath);
+  const data = JSON.parse(jsonData);
 
-//   return {
-//     props: {
-//       users: JSON.parse(JSON.stringify(users)),
-//     },
-//   };
-// }
+  return {
+    props: {
+      users: data.admins,
+    },
+    revalidate: 600,
+  };
+}
 
-// export default function Read({ users }) {
-//   const deleteHandler = (e) => {
-//     console.log(e.target);
-//   };
-
-//   return (
-//     <div className="">
-//       <ul>
-//         {users.map((user) => (
-//           <div key={user.id}>
-//             <h2>
-//               {user.firstName} {user.lastName}
-//             </h2>
-//             <h5>{user.company}</h5>
-//             {/* <i>
-//               <b>ID:{user.id}</b>
-//             </i> */}
-//             <p>{user.role}</p>
-
-//             {/* <i>{user.createdAt}</i> */}
-
-//             <Link href={`/users/${user.id}`}>{user.firstName}</Link>
-//             {/* <button onClick={deleteHandler} testar={user.firstName}>
-//               UPDATED
-//             </button> */}
-
-//             <p>-------</p>
-//           </div>
-//         ))}
-//       </ul>
-
-//       <div users={users}></div>
-
-//       <h1 className={styles.heading_h1}>USERS</h1>
-//       <form method="post" className={styles.login__form}>
-//         <label htmlFor="company" className={styles.form__label}>
-//           Company
-//         </label>
-//         <input type="text" className={styles.form__input} id="company"></input>
-
-//         <label htmlFor="role" className={styles.form__label}>
-//           Role
-//         </label>
-//         <select id="role" className={styles.form__input} name="Basic">
-//           <option value="basic">BASIC</option>
-//           <option value="admin">ADMIN</option>
-//           <option value="reading">DEVELOPER</option>
-//         </select>
-
-//         <label htmlFor="firstname" className={styles.form__label}>
-//           First name
-//         </label>
-//         <input
-//           type="text"
-//           className={styles.form__input}
-//           id="firstname"
-//         ></input>
-
-//         <label htmlFor="lastname" className={styles.form__label}>
-//           Last name
-//         </label>
-//         <input type="text" className={styles.form__input} id="lastname"></input>
-
-//         <label htmlFor="email" className={styles.form__label}>
-//           Email
-//         </label>
-//         <input type="email" className={styles.form__input} id="email"></input>
-
-//         <label htmlFor="password" className={styles.form__label}>
-//           Password
-//         </label>
-//         <input
-//           type="password"
-//           className={styles.form__input}
-//           id="password"
-//         ></input>
-
-//         {/* <button onSubmit={submitHandler}></button> */}
-//       </form>
-//     </div>
-//   );
-// }
+export default Users;
