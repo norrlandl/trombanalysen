@@ -1,0 +1,54 @@
+@use "colors.scss";
+@use "typography.scss";
+
+.sidebar {
+  background-color: colors.$color-grey-light;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 26rem;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15rem;
+    background-color: orange;
+    margin-bottom: 5rem;
+  }
+
+  &__list {
+    list-style: none;
+    margin-left: 4rem;
+  }
+
+  &__item {
+    width: 18rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: colors.$color-grey-200;
+    display: flex;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-family: typography.$font_manrope;
+    color: colors.$color-grey-700;
+    padding: 1.3rem 2.5rem;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    color: colors.$color-grey-500;
+    font-size: 1.8rem;
+  }
+
+  &__name {
+    margin-left: 1.2rem;
+  }
+}

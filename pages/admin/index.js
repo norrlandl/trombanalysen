@@ -1,52 +1,16 @@
+import Sidebar from "@/components/layout/sidebar";
 import styles from "./index.module.scss";
+import { ButtonPrimary } from "@/components/ui/buttons";
+import Navbar from "@/components/layout/navbar";
 
 export default function Admin() {
   return (
     <div className="">
-      <h1 className={styles.heading_h1}>USERS</h1>
-      <form method="post" className={styles.login__form}>
-        <label htmlFor="company" className={styles.form__label}>
-          Company
-        </label>
-        <input type="text" className={styles.form__input} id="company"></input>
+      <Sidebar />
+      <h1 className={styles.heading_h1}>DASHBOARD</h1>
 
-        <label htmlFor="role" className={styles.form__label}>
-          Role
-        </label>
-        <select id="role" className={styles.form__input} name="Basic">
-          <option value="basic">Basic</option>
-          <option value="admin">Admin</option>
-          <option value="reading">Reading</option>
-        </select>
-
-        <label htmlFor="firstname" className={styles.form__label}>
-          First name
-        </label>
-        <input
-          type="text"
-          className={styles.form__input}
-          id="firstname"
-        ></input>
-
-        <label htmlFor="lastname" className={styles.form__label}>
-          Last name
-        </label>
-        <input type="text" className={styles.form__input} id="lastname"></input>
-
-        <label htmlFor="email" className={styles.form__label}>
-          Email
-        </label>
-        <input type="email" className={styles.form__input} id="email"></input>
-
-        <label htmlFor="password" className={styles.form__label}>
-          Password
-        </label>
-        <input
-          type="password"
-          className={styles.form__input}
-          id="password"
-        ></input>
-      </form>
+      <ButtonPrimary link={`/admin/users/`}>Users</ButtonPrimary>
+      <p></p>
     </div>
   );
 }

@@ -25,6 +25,16 @@ const prisma = new PrismaClient();
 
 /*
 
+***** WORKING CRUD CODE *****
+
+ <ButtonTertiary
+link={`/admin/users/${id}`}
+id={id}
+company={company}
+>
+Details
+</ButtonTertiary>
+
 
 ***** WORKING CRUD CODE *****
 

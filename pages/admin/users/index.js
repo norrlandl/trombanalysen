@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import fs from "fs/promises";
-import path from "path";
+// import fs from "fs/promises";
+// import path from "path";
 
 import styles from "./index.module.scss";
 import {
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/buttons";
 import NewUserForm from "./newUserForm";
 import UserList from "@/components/users/userList";
+import Sidebar from "@/components/layout/sidebar";
 
 function Users(props) {
   const [users, setUsers] = useState([]);
@@ -142,13 +143,14 @@ function Users(props) {
     fetchData();
   }, []);
 
-  const { admins } = props;
+  // const { admins } = props;
 
   return (
     <div>
-      {admins.map((users) => (
+      <Sidebar />
+      {/* {users.map((users) => (
         <li key={users.id}>{users.company}</li>
-      ))}
+      ))} */}
       <h1>Users CRUD with component</h1>
       <NewUserForm onAddUser={addUserHandler} />
       <h2>READ with component</h2>
@@ -231,17 +233,17 @@ function Users(props) {
   );
 }
 
-export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "pages/api/post", "get.js");
-  const jsonData = await fs.readFile(filePath);
-  const data = JSON.parse(jsonData);
+// export async function getStaticProps() {
+//   const filePath = path.join(process.cwd(), "pages/api/post", "get.js");
+//   const jsonData = await fs.readFile(filePath);
+//   const data = JSON.parse(jsonData);
 
-  return {
-    props: {
-      users: data.admins,
-    },
-    revalidate: 600,
-  };
-}
+//   return {
+//     props: {
+//       users: data.admins,
+//     },
+//     revalidate: 600,
+//   };
+// }
 
 export default Users;

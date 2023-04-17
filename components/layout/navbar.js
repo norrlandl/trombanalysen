@@ -1,4 +1,4 @@
-import styles from "./Navbar.module.scss";
+import styles from "./navbar.module.scss";
 import Image from "next/image";
 import toggle from "../../public/toggle.svg";
 import Link from "next/link";
