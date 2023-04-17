@@ -50,3 +50,22 @@
     transform: translateY(-4rem);
   }
 }
+
+.table {
+  border-collapse: collapse;
+  border-radius: 0.4rem;
+  overflow: hidden;
+
+  &__headAndFoot {
+    background-color: colors.$color-grey-100;
+    height: 4.5rem;
+    font-size: 1.2rem;
+    font-family: typography.$font_manrope;
+    color: colors.$color-grey-700;
+    text-align: left;
+
+    tr th:first-child {
+      width: 20rem;
+    }
+  }
+}

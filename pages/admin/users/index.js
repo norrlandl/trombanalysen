@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import fs from "fs/promises";
-// import path from "path";
 
 import styles from "./index.module.scss";
 import {
@@ -11,6 +9,7 @@ import {
 import NewUserForm from "./newUserForm";
 import UserList from "@/components/users/userList";
 import Sidebar from "@/components/layout/sidebar";
+import AdminLayout from "@/components/layout/adminLayout";
 
 function Users(props) {
   const [users, setUsers] = useState([]);
@@ -146,16 +145,18 @@ function Users(props) {
   // const { admins } = props;
 
   return (
-    <div>
-      <Sidebar />
-      {/* {users.map((users) => (
+    <AdminLayout>
+      <div className={styles.content}>
+        <h1 className={styles.heading_h1}>USERS</h1>
+        {/* {users.map((users) => (
         <li key={users.id}>{users.company}</li>
       ))} */}
-      <h1>Users CRUD with component</h1>
-      <NewUserForm onAddUser={addUserHandler} />
-      <h2>READ with component</h2>
-      <UserList users={users} onDeleteUser={deleteUserHandler} />
-      {/* <h1>Users CRUD</h1>
+
+        <UserList users={users} onDeleteUser={deleteUserHandler} />
+
+        <h1>Users CRUD with component</h1>
+        <NewUserForm onAddUser={addUserHandler} />
+        {/* <h1>Users CRUD</h1>
       <h2>CREATE</h2>
       <form onSubmit={handleCreate}>
         <input
@@ -229,7 +230,8 @@ function Users(props) {
           );
         })}
       </div> */}
-    </div>
+      </div>
+    </AdminLayout>
   );
 }
 

@@ -1,43 +1,58 @@
-import React from "react";
+import { useRouter } from "next/router";
 import styles from "./sidebar.module.scss";
 import Link from "next/link";
 import { RxDashboard } from "react-icons/rx";
 import { SiGoogleanalytics } from "react-icons/si";
 import { FaRegUserCircle } from "react-icons/fa";
+import { ButtonPrimary } from "../ui/buttons";
 
-const sidebarItems = [
+const sidebarLinks = [
   {
-    name: "Dashboard",
-    href: "/admin",
+    title: "Dashboard",
+    link: "/admin",
     icon: RxDashboard,
   },
   {
-    name: "Analysis",
-    href: "/admin",
+    title: "Analysis",
+    link: "/admin/analysis",
     icon: SiGoogleanalytics,
   },
   {
-    name: "User",
-    href: "/admin/users",
+    title: "User",
+    link: "/admin/users",
     icon: FaRegUserCircle,
   },
 ];
 
 export default function Sidebar() {
+  const router = useRouter();
+
   return (
     <div>
       <aside className={styles.sidebar}>
         <div className={styles.sidebar__top}>
           <div>Firstname Lastname Admin</div>
         </div>
+
         <ul className={styles.sidebar__list}>
-          {sidebarItems.map(({ name, href, icon: Icon }) => (
-            <li className={styles.sidebar__item} key={name}>
-              <Link href={href} className={styles.sidebar__link}>
+          <div className={styles.sidebar__newAnalysis}>
+            <ButtonPrimary link={`/admin/users/`}>+ New analysis</ButtonPrimary>
+          </div>
+
+          {sidebarLinks.map(({ title, link, icon: Icon }) => (
+            <li className={styles.sidebar__item} key={title}>
+              <Link
+                href={link}
+                className={`${
+                  router.pathname === link
+                    ? styles.sidebar__link_active
+                    : styles.sidebar__link
+                }`}
+              >
                 <span className={styles.sidebar__icon}>
                   <Icon />
                 </span>
-                <span className={styles.sidebar__name}>{name}</span>
+                <span className={styles.sidebar__title}>{title}</span>
               </Link>
             </li>
           ))}
