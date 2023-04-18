@@ -1,16 +1,19 @@
 import styles from "./userList.module.scss";
+import { MdDeleteOutline } from "react-icons/md";
+import { MdOutlineEdit } from "react-icons/md";
 
 export default function UserList(props) {
   function deleteHandler(id) {
     props.onDeleteUser(id);
   }
+
   return (
     <div>
       <h2>All users</h2>
       <h4>Sort by name, role, date</h4>
 
       <table className={styles.table}>
-        <thead className={styles.table__headAndFoot}>
+        <thead className={styles.table__thead}>
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Role</th>
@@ -19,7 +22,7 @@ export default function UserList(props) {
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={styles.table__tbody}>
           {props.users.map(
             ({ id, company, role, firstName, lastName, createdAt }) => {
               const date = new Date(createdAt)
@@ -29,33 +32,54 @@ export default function UserList(props) {
               console.log(date);
 
               return (
-                <tr key={id}>
-                  <td>
+                <tr key={id} className={styles.table__tbody_tr}>
+                  <td className={styles.table__tbody_td}>
                     {firstName} {lastName}
                   </td>
-                  <td>{role}</td>
-                  <td>{company}</td>
-                  <td>{date}</td>
-                  <button onClick={() => deleteHandler(id)}>Delete User</button>
-                  <button
-                    onClick={() =>
-                      handleEdit(id, company, role, firstName, lastName)
-                    }
+                  <td
+                    className={`${
+                      role === "ADMIN"
+                        ? styles.table__tbody_td_green
+                        : styles.table__tbody_td_yellow
+                    }`}
                   >
-                    Edit User
-                  </button>
+                    <span>{role}</span>
+                  </td>
+                  <td className={styles.table__tbody_td}>{company}</td>
+                  <td className={styles.table__tbody_td}>{date}</td>
+                  <td className={styles.table__tbody_td}>
+                    <button
+                      onClick={() => deleteHandler(id)}
+                      className={styles.table__button}
+                    >
+                      <span className={styles.table__icon}>
+                        <MdDeleteOutline />
+                      </span>
+                    </button>
+                    <button
+                      onClick={() =>
+                        handleEdit(id, company, role, firstName, lastName)
+                      }
+                      className={styles.table__button}
+                    >
+                      {" "}
+                      <span className={styles.table__icon}>
+                        <MdOutlineEdit />
+                      </span>
+                    </button>
+                  </td>
                 </tr>
               );
             }
           )}
         </tbody>
-        <tfoot className={styles.table__headAndFoot}>
+        <tfoot className={styles.table__tfoot}>
           <tr>
             <td colSpan="6"></td>
           </tr>
         </tfoot>
       </table>
-
+      {/* 
       {props.users.map(({ id, company, role, firstName, lastName }) => {
         return (
           <div key={id}>
@@ -72,7 +96,7 @@ export default function UserList(props) {
             </button>
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }

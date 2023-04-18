@@ -1,5 +1,6 @@
 @use "typography.scss";
 @use "colors.scss";
+@use "mixins.scss";
 
 .form {
   &__input {
@@ -55,17 +56,93 @@
   border-collapse: collapse;
   border-radius: 0.4rem;
   overflow: hidden;
+  font-family: typography.$font_manrope;
 
-  &__headAndFoot {
+  &__icon {
+    text-decoration: none;
+    display: flex;
+  }
+
+  &__button {
+    text-decoration: none;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 100%;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &:first-child {
+      margin-right: 2.8rem;
+      color: colors.$color-red-dark;
+      background-color: colors.$color-red-light;
+    }
+
+    &:nth-child(2) {
+      color: colors.$color-grey-700;
+      background-color: colors.$color-grey-200;
+    }
+  }
+
+  &__thead,
+  &__tfoot {
     background-color: colors.$color-grey-100;
     height: 4.5rem;
-    font-size: 1.2rem;
-    font-family: typography.$font_manrope;
-    color: colors.$color-grey-700;
-    text-align: left;
 
-    tr th:first-child {
-      width: 20rem;
+    & tr > * {
+      @include mixins.tablePadding;
+      text-align: left;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: colors.$color-grey-600;
+    }
+  }
+
+  &__tbody {
+    font-size: 1.2rem;
+    color: colors.$color-grey-500;
+  }
+
+  &__tbody_tr {
+    background-color: colors.$color-grey-light;
+    height: 5.5rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid colors.$color-grey-100;
+    }
+
+    & > * {
+      @include mixins.tablePadding;
+    }
+  }
+
+  &__tbody_td {
+    &:first-child {
+      font-weight: 400;
+      color: colors.$color-grey-600;
+    }
+
+    &:nth-child(3) {
+      font-weight: 300;
+      letter-spacing: 0.2px;
+      color: colors.$color-grey-400;
+    }
+
+    &_green {
+      color: colors.$color-green-dark;
+
+      span {
+        background-color: colors.$color-green-light;
+        @include mixins.tableSpan;
+      }
+    }
+
+    &_yellow {
+      color: colors.$color-yellow-dark;
+
+      span {
+        background-color: colors.$color-yellow-light;
+        @include mixins.tableSpan;
+      }
     }
   }
 }
