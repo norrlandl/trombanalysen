@@ -3,10 +3,9 @@ import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import { useState } from "react";
+import Link from "next/link";
 
-export default function UserList(props, users) {
-  const [userData, setUserData] = useState();
-
+export default function UserList(props) {
   function deleteHandler(id) {
     props.onDeleteUser(id);
   }
@@ -84,7 +83,7 @@ export default function UserList(props, users) {
                         <MdOutlineEdit />
                       </span>
                     </button>
-                    <button
+                    {/* <button
                       // onClick={detailsHandler.bind(null, id)}
                       // onClick={detailsHandler}
                       onClick={() => detailsHandler(id)}
@@ -93,8 +92,8 @@ export default function UserList(props, users) {
                       <span className={styles.table__icon}>
                         <FiMoreVertical />
                       </span>
-                    </button>
-                    {/* <Link></Link> */}
+                    </button> */}
+                    <Link href={`/admin/users/user/${id}`}>Details</Link>
                   </td>
                 </tr>
               );
@@ -109,18 +108,4 @@ export default function UserList(props, users) {
       </table>
     </div>
   );
-}
-
-export async function getServerSideProps(props) {
-  const users = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
-  });
-
-  return {
-    props: {
-      users: JSON.parse(JSON.stringify(users)),
-    },
-  };
 }

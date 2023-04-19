@@ -1,11 +1,11 @@
 import { prisma } from "../../../prisma/client";
 
 export default async function handler(req, res) {
-  const userId = req.body.id;
+  const { id } = req.body;
   const user = await prisma.user.findUnique({
     where: {
       // id: "e56ab25a-7320-497b-af20-13a71027c205",
-      id: userId,
+      id: id,
     },
   });
   res.status(201).json(user);

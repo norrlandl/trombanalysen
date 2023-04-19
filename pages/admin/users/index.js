@@ -3,27 +3,39 @@ import { prisma } from "../../../prisma/client";
 import { useRouter } from "next/router";
 
 import styles from "./index.module.scss";
-import NewUserForm from "./newUserForm";
+import NewUserForm from "../../../components/users/newUserForm";
 import UserList from "@/components/users/userList";
 import AdminLayout from "@/components/layout/adminLayout";
 
 export default function Users({ userData }) {
   const router = useRouter();
 
-  // const [users, setUsers] = useState(userData);
-
   const refreshData = () => {
     router.replace(router.asPath);
   };
-  // const [users, setUsers] = useState([]);
 
-  async function addUserHandler(userData) {
+  async function createUserHandler(userData) {
     const response = await fetch("/api/post/create", {
       method: "POST",
       body: JSON.stringify(userData),
       headers: { "Content-Type": "application/json" },
     });
 
+    if (response.status < 300) {
+      refreshData();
+    }
+  }
+
+  async function deleteUserHandler(id) {
+    console.log(id);
+    const response = await fetch(`/api/post/delete`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    const json = await response.json();
     if (response.status < 300) {
       refreshData();
     }
@@ -41,61 +53,46 @@ export default function Users({ userData }) {
   //     });
   // }, []);
 
-  const [data, setData] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [inputedData, setInputedData] = useState({
-    id: "",
-    company: "",
-    role: "",
-    firstName: "",
-    lastName: "",
-  });
+  // const [data, setData] = useState([]);
+  // const [editMode, setEditMode] = useState(false);
+  // const [inputedData, setInputedData] = useState({
+  //   id: "",
+  //   company: "",
+  //   role: "",
+  //   firstName: "",
+  //   lastName: "",
+  // });
 
-  const deleteUserHandler = async (id) => {
-    console.log(id);
-    const response = await fetch(`/api/post/delete`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id,
-      }),
-    });
-    const json = await response.json();
-    if (response.status < 300) {
-      refreshData();
-    }
-  };
+  // const handleEdit = async (id, company, role, firstName, lastName) => {
+  //   console.log(id, company, role, firstName, lastName);
+  //   setInputedData({ id, company, role, firstName, lastName });
+  //   setEditMode(true);
+  // };
 
-  const handleEdit = async (id, company, role, firstName, lastName) => {
-    console.log(id, company, role, firstName, lastName);
-    setInputedData({ id, company, role, firstName, lastName });
-    setEditMode(true);
-  };
-
-  const updateUserHandler = async () => {
-    const response = await fetch(`/api/post/update`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: inputedData.id,
-        company: inputedData.company,
-        role: inputedData.role,
-        firstName: inputedData.firstName,
-        lastName: inputedData.lastName,
-      }),
-    });
-    const json = await response.json();
-    console.log(json);
-    setInputedData({
-      id: "",
-      company: "",
-      role: "",
-      firstName: "",
-      lastName: "",
-    });
-    setEditMode(false);
-    fetchData();
-  };
+  // const updateUserHandler = async () => {
+  //   const response = await fetch(`/api/post/update`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       id: inputedData.id,
+  //       company: inputedData.company,
+  //       role: inputedData.role,
+  //       firstName: inputedData.firstName,
+  //       lastName: inputedData.lastName,
+  //     }),
+  //   });
+  //   const json = await response.json();
+  //   console.log(json);
+  //   setInputedData({
+  //     id: "",
+  //     company: "",
+  //     role: "",
+  //     firstName: "",
+  //     lastName: "",
+  //   });
+  //   setEditMode(false);
+  //   fetchData();
+  // };
 
   // useEffect(() => {
   //   fetchData();
@@ -108,9 +105,9 @@ export default function Users({ userData }) {
         <UserList
           users={userData}
           onDeleteUser={deleteUserHandler}
-          onUpdateUser={updateUserHandler}
+          // onUpdateUser={updateUserHandler}
         />
-        <NewUserForm onAddUser={addUserHandler} />
+        <NewUserForm onCreateUser={createUserHandler} />
       </div>
     </AdminLayout>
   );

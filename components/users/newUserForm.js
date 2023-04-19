@@ -30,7 +30,7 @@ export default function NewUserForm(props) {
     };
 
     // console.log(userData);
-    props.onAddUser(userData);
+    props.onCreateUser(userData);
   }
 
   return (
