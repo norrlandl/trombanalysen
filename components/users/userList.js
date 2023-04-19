@@ -1,16 +1,27 @@
 import styles from "./userList.module.scss";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
+import { FiMoreVertical } from "react-icons/fi";
+import { useState } from "react";
 
-export default function UserList(props) {
+export default function UserList(props, users) {
+  const [userData, setUserData] = useState();
+
   function deleteHandler(id) {
     props.onDeleteUser(id);
   }
 
+  function detailsHandler(id) {
+    const userId = id;
+    console.log(id);
+  }
+
   return (
     <div>
-      <h2>All users</h2>
-      <h4>Sort by name, role, date</h4>
+      <div>
+        <h4 className={styles.heading_h4}>All users</h4>
+        <h5 className={styles.heading_h5}>Sort by name, role, date</h5>
+      </div>
 
       <table className={styles.table}>
         <thead className={styles.table__thead}>
@@ -67,6 +78,16 @@ export default function UserList(props) {
                         <MdOutlineEdit />
                       </span>
                     </button>
+                    <button
+                      // onClick={detailsHandler.bind(null, id)}
+                      // onClick={detailsHandler}
+                      onClick={() => detailsHandler(id)}
+                      className={styles.table__button}
+                    >
+                      <span className={styles.table__icon}>
+                        <FiMoreVertical />
+                      </span>
+                    </button>
                   </td>
                 </tr>
               );
@@ -79,24 +100,20 @@ export default function UserList(props) {
           </tr>
         </tfoot>
       </table>
-      {/* 
-      {props.users.map(({ id, company, role, firstName, lastName }) => {
-        return (
-          <div key={id}>
-            <h2>
-              {firstName} {lastName}
-            </h2>
-            <h3>{company}</h3>
-            <p>{role}</p>
-            <button onClick={() => deleteHandler(id)}>Delete User</button>
-            <button
-              onClick={() => handleEdit(id, company, role, firstName, lastName)}
-            >
-              Edit User
-            </button>
-          </div>
-        );
-      })} */}
     </div>
   );
+}
+
+export async function getServerSideProps(props) {
+  const users = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  return {
+    props: {
+      users: JSON.parse(JSON.stringify(users)),
+    },
+  };
 }

@@ -12,6 +12,10 @@
   padding: 0 6rem;
 }
 
+@mixin marginForms {
+  margin: 3rem 0 8rem 0;
+}
+
 @mixin greyIcon {
   width: 5rem;
   height: auto;
@@ -19,21 +23,21 @@
 }
 
 @mixin adminContent {
-  display: block;
-  width: calc(100% - 26rem);
+  // display: block;
+  // width: calc(100% - 22rem);
   padding: 7.5rem 6rem;
-  flex: 1;
-  height: 100%;
+  // flex: 1;
+  // height: 100%;
   min-height: 100vh;
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  left: 26rem;
+  // bottom: 0;
+  left: 24rem;
 }
 
 @mixin tablePadding {
-  padding: 0 3rem;
+  padding: 1rem 2.5rem;
 }
 
 @mixin tableSpan {

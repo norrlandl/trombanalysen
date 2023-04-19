@@ -24,28 +24,28 @@ export default function Login() {
         <form
           action="/send-data-here"
           method="post"
-          className={styles.login__form}
+          className={styles.login__loginform}
         >
           <input
             type="text"
-            className={styles.form__input}
+            className={styles.loginform__input}
             placeholder="Username"
             id="username"
             required
           />
-          <label className={styles.form__label} for="username">
+          <label className={styles.loginform__label} for="username">
             Username
           </label>
 
           <input
             type="password"
-            className={styles.form__input}
+            className={styles.loginform__input}
             placeholder="Password"
             id="password"
             required
           />
 
-          <label className={styles.form__label} for="password">
+          <label className={styles.loginform__label} for="password">
             Password
           </label>
 
@@ -56,7 +56,7 @@ export default function Login() {
           >
             Logga in
           </button>
-          <div className={styles.login__form_forgot}>
+          <div className={styles.login__loginform_forgot}>
             <a>Kom ihåg</a>
             <a>Glömt lösenord?</a>
             <Link href="/landing">Radar chart</Link>

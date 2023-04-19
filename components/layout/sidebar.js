@@ -4,6 +4,7 @@ import Link from "next/link";
 import { RxDashboard } from "react-icons/rx";
 import { SiGoogleanalytics } from "react-icons/si";
 import { FaRegUserCircle } from "react-icons/fa";
+import { BiMessageSquareAdd } from "react-icons/bi";
 import { ButtonPrimary } from "../ui/buttons";
 
 const sidebarLinks = [
@@ -35,9 +36,19 @@ export default function Sidebar() {
         </div>
 
         <ul className={styles.sidebar__list}>
-          <div className={styles.sidebar__newAnalysis}>
-            <ButtonPrimary link={`/admin/users/`}>+ New analysis</ButtonPrimary>
-          </div>
+          <li className={styles.sidebar__item_new}>
+            <Link
+              href="/admin/analysis"
+              className={`${styles.sidebar__link} ${styles.sidebar__link_new}`}
+            >
+              <span
+                className={`${styles.sidebar__icon} ${styles.sidebar__icon_new}`}
+              >
+                <BiMessageSquareAdd />{" "}
+              </span>
+              <span className={styles.sidebar__title}>New analysis</span>
+            </Link>
+          </li>
 
           {sidebarLinks.map(({ title, link, icon: Icon }) => (
             <li className={styles.sidebar__item} key={title}>

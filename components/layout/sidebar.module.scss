@@ -3,7 +3,7 @@
 
 .sidebar {
   position: fixed;
-  width: 26rem;
+  width: 24rem;
   min-height: 100vh;
   background-color: colors.$color-grey-light;
 
@@ -22,12 +22,18 @@
 
   &__list {
     list-style: none;
-    margin-left: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__item {
     width: 18rem;
     margin-bottom: 1.4rem;
+
+    &_new {
+      margin-bottom: 5rem;
+    }
   }
 
   &__link {
@@ -44,6 +50,15 @@
     &:hover {
       background-color: colors.$color-grey-200;
       transition: background-color 0.4s;
+    }
+
+    &_new {
+      color: colors.$color-white;
+      background-color: colors.$color-primary-900;
+
+      &:hover {
+        background-color: colors.$color-primary-700;
+      }
     }
 
     &_active {
@@ -65,6 +80,10 @@
     align-items: center;
     color: colors.$color-grey-500;
     font-size: 1.8rem;
+
+    &_new {
+      color: colors.$color-white;
+    }
   }
 
   &__title {

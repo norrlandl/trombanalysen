@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { prisma } from "../../../prisma/client";
+import { useRouter } from "next/router";
 
 import styles from "./index.module.scss";
-import {
-  ButtonPrimary,
-  ButtonSecondary,
-  ButtonTertiary,
-} from "@/components/ui/buttons";
 import NewUserForm from "./newUserForm";
 import UserList from "@/components/users/userList";
-import Sidebar from "@/components/layout/sidebar";
 import AdminLayout from "@/components/layout/adminLayout";
 
-function Users(props) {
-  const [users, setUsers] = useState([]);
+export default function Users({ users }) {
+  const router = useRouter();
 
-  function addUserHandler(userData) {
-    fetch("/api/post/create", {
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+  // const [users, setUsers] = useState([]);
+
+  async function addUserHandler(userData) {
+    const response = await fetch("/api/post/create", {
       method: "POST",
       body: JSON.stringify(userData),
       headers: { "Content-Type": "application/json" },
     });
+
+    if (response.status < 300) {
+      refreshData();
+    }
   }
 
   // // *** WORKING ***
@@ -35,21 +40,20 @@ function Users(props) {
   // }, []);
 
   // const [data, setData] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [inputedData, setInputedData] = useState({
-    id: "",
-    company: "",
-    role: "",
-    firstName: "",
-    lastName: "",
-  });
+  // const [editMode, setEditMode] = useState(false);
+  // const [inputedData, setInputedData] = useState({
+  //   id: "",
+  //   company: "",
+  //   role: "",
+  //   firstName: "",
+  //   lastName: "",
+  // });
 
-  const fetchData = async () => {
-    const response = await fetch(`/api/post/get`);
-    const json = await response.json();
-    setUsers(json);
-    // console.log(json);
-  };
+  // const fetchData = async () => {
+  //   const response = await fetch(`/api/post/get`);
+  //   const json = await response.json();
+  //   setUsers(json);
+  // };
 
   // // const handleCreate = async (e) => {
   // //   e.preventDefault();
@@ -90,7 +94,9 @@ function Users(props) {
       }),
     });
     const json = await response.json();
-    fetchData();
+    if (response.status < 300) {
+      refreshData();
+    }
   };
 
   // const handleDelete = async (id) => {
@@ -138,9 +144,9 @@ function Users(props) {
   //   fetchData();
   // };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   // const { admins } = props;
 
@@ -151,10 +157,8 @@ function Users(props) {
         {/* {users.map((users) => (
         <li key={users.id}>{users.company}</li>
       ))} */}
-
         <UserList users={users} onDeleteUser={deleteUserHandler} />
 
-        <h1>Users CRUD with component</h1>
         <NewUserForm onAddUser={addUserHandler} />
         {/* <h1>Users CRUD</h1>
       <h2>CREATE</h2>
@@ -235,17 +239,21 @@ function Users(props) {
   );
 }
 
-// export async function getStaticProps() {
-//   const filePath = path.join(process.cwd(), "pages/api/post", "get.js");
-//   const jsonData = await fs.readFile(filePath);
-//   const data = JSON.parse(jsonData);
+export async function getServerSideProps() {
+  const users = await prisma.user.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
-//   return {
-//     props: {
-//       users: data.admins,
-//     },
-//     revalidate: 600,
-//   };
-// }
+  // const filePath = path.join(process.cwd(), "pages/api/post", "get.js");
+  // const jsonData = await fs.readFile(filePath);
+  // const data = JSON.parse(jsonData);
 
-export default Users;
+  return {
+    props: {
+      users: JSON.parse(JSON.stringify(users)),
+    },
+    // revalidate: 600,
+  };
+}

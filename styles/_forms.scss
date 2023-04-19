@@ -2,7 +2,159 @@
 @use "colors.scss";
 @use "mixins.scss";
 
+/***** INPUTFORM *****/
+
 .form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 65rem;
+  @include mixins.marginForms;
+
+  &__section {
+    width: 30rem;
+
+    &_button {
+      margin-left: auto;
+    }
+  }
+
+  &__input {
+    height: 5rem;
+    width: stretch;
+    font-family: typography.$font-inter;
+    background-color: colors.$color-grey-light;
+    border: 1px solid colors.$color-grey-200;
+    border-radius: 0.4rem;
+    margin-bottom: 2.8rem;
+    padding: 0 1rem;
+  }
+
+  &__label {
+    font-family: typography.$font-manrope;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: colors.$color-grey-700;
+    display: block;
+  }
+}
+
+/***** TABLE *****/
+
+.table {
+  // width: 80rem;
+  border-collapse: collapse;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  font-family: typography.$font_manrope;
+  @include mixins.marginForms;
+
+  &__icon {
+    text-decoration: none;
+    display: flex;
+  }
+
+  &__button {
+    text-decoration: none;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 100%;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &:first-child,
+    &:nth-child(2) {
+      margin-right: 2rem;
+      color: colors.$color-red-dark;
+      background-color: colors.$color-red-light;
+    }
+
+    &:nth-child(2) {
+      color: colors.$color-grey-700;
+      background-color: colors.$color-grey-200;
+    }
+  }
+
+  &__thead,
+  &__tfoot {
+    background-color: colors.$color-grey-100;
+    height: 4.5rem;
+
+    & tr > * {
+      @include mixins.tablePadding;
+      text-align: left;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: colors.$color-grey-600;
+
+      &:first-child {
+        padding-left: 4rem;
+      }
+
+      &:last-child {
+        padding-right: 4rem;
+      }
+    }
+  }
+
+  &__tbody {
+    font-size: 1.2rem;
+    color: colors.$color-grey-500;
+  }
+
+  &__tbody_tr {
+    background-color: colors.$color-grey-light;
+    height: 5.5rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid colors.$color-grey-100;
+    }
+
+    & > * {
+      @include mixins.tablePadding;
+    }
+  }
+
+  &__tbody_td {
+    &:first-child {
+      font-weight: 400;
+      color: colors.$color-grey-600;
+      padding-left: 4rem;
+    }
+
+    &:last-child {
+      padding-right: 4rem;
+    }
+
+    &:nth-child(3) {
+      font-weight: 300;
+      letter-spacing: 0.2px;
+      color: colors.$color-grey-400;
+    }
+
+    &_green {
+      color: colors.$color-green-dark;
+
+      span {
+        background-color: colors.$color-green-light;
+        @include mixins.tableSpan;
+      }
+    }
+
+    &_yellow {
+      color: colors.$color-yellow-dark;
+
+      span {
+        background-color: colors.$color-yellow-light;
+        @include mixins.tableSpan;
+      }
+    }
+  }
+}
+
+/***** LOGIN FORM *****/
+
+.loginform {
   &__input {
     font-family: typography.$font-inter;
     font-size: 1.4rem;
@@ -49,100 +201,5 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
-  }
-}
-
-.table {
-  border-collapse: collapse;
-  border-radius: 0.4rem;
-  overflow: hidden;
-  font-family: typography.$font_manrope;
-
-  &__icon {
-    text-decoration: none;
-    display: flex;
-  }
-
-  &__button {
-    text-decoration: none;
-    border: none;
-    padding: 0.8rem;
-    border-radius: 100%;
-    font-size: 1.6rem;
-    cursor: pointer;
-
-    &:first-child {
-      margin-right: 2.8rem;
-      color: colors.$color-red-dark;
-      background-color: colors.$color-red-light;
-    }
-
-    &:nth-child(2) {
-      color: colors.$color-grey-700;
-      background-color: colors.$color-grey-200;
-    }
-  }
-
-  &__thead,
-  &__tfoot {
-    background-color: colors.$color-grey-100;
-    height: 4.5rem;
-
-    & tr > * {
-      @include mixins.tablePadding;
-      text-align: left;
-      font-weight: 500;
-      font-size: 1.2rem;
-      color: colors.$color-grey-600;
-    }
-  }
-
-  &__tbody {
-    font-size: 1.2rem;
-    color: colors.$color-grey-500;
-  }
-
-  &__tbody_tr {
-    background-color: colors.$color-grey-light;
-    height: 5.5rem;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid colors.$color-grey-100;
-    }
-
-    & > * {
-      @include mixins.tablePadding;
-    }
-  }
-
-  &__tbody_td {
-    &:first-child {
-      font-weight: 400;
-      color: colors.$color-grey-600;
-    }
-
-    &:nth-child(3) {
-      font-weight: 300;
-      letter-spacing: 0.2px;
-      color: colors.$color-grey-400;
-    }
-
-    &_green {
-      color: colors.$color-green-dark;
-
-      span {
-        background-color: colors.$color-green-light;
-        @include mixins.tableSpan;
-      }
-    }
-
-    &_yellow {
-      color: colors.$color-yellow-dark;
-
-      span {
-        background-color: colors.$color-yellow-light;
-        @include mixins.tableSpan;
-      }
-    }
   }
 }
