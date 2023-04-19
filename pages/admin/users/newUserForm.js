@@ -3,12 +3,12 @@ import styles from "./newUserForm.module.scss";
 import { ButtonPrimary } from "@/components/ui/buttons";
 
 export default function NewUserForm(props) {
-  const firstNameInputRef = useRef();
-  const lastNameInputRef = useRef();
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
-  const companyInputRef = useRef();
-  const roleInputRef = useRef();
+  const firstNameInputRef = useRef("");
+  const lastNameInputRef = useRef("");
+  const emailInputRef = useRef("");
+  const passwordInputRef = useRef("");
+  const companyInputRef = useRef("");
+  const roleInputRef = useRef("");
 
   function submitHandler(e) {
     e.preventDefault();
@@ -29,7 +29,7 @@ export default function NewUserForm(props) {
       role: enteredRole,
     };
 
-    console.log(userData);
+    // console.log(userData);
     props.onAddUser(userData);
   }
 

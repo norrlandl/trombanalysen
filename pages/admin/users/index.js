@@ -7,8 +7,10 @@ import NewUserForm from "./newUserForm";
 import UserList from "@/components/users/userList";
 import AdminLayout from "@/components/layout/adminLayout";
 
-export default function Users({ users }) {
+export default function Users({ userData }) {
   const router = useRouter();
+
+  // const [users, setUsers] = useState(userData);
 
   const refreshData = () => {
     router.replace(router.asPath);
@@ -39,55 +41,20 @@ export default function Users({ users }) {
   //     });
   // }, []);
 
-  // const [data, setData] = useState([]);
-  // const [editMode, setEditMode] = useState(false);
-  // const [inputedData, setInputedData] = useState({
-  //   id: "",
-  //   company: "",
-  //   role: "",
-  //   firstName: "",
-  //   lastName: "",
-  // });
-
-  // const fetchData = async () => {
-  //   const response = await fetch(`/api/post/get`);
-  //   const json = await response.json();
-  //   setUsers(json);
-  // };
-
-  // // const handleCreate = async (e) => {
-  // //   e.preventDefault();
-  // //   if (editMode) {
-  // //     handleUpdate();
-  // //   } else {
-  // //     const response = await fetch(`/api/post/create`, {
-  // //       method: "POST",
-  // //       headers: { "Content-Type": "application/json" },
-  // //       body: JSON.stringify({
-  // //         company: inputedData.company,
-  // //         role: inputedData.role,
-  // //         firstName: inputedData.firstName,
-  // //         lastName: inputedData.lastName,
-  // //       }),
-  // //     });
-  // //     const json = await response.json();
-  // //     // console.log(json);
-  // //     setInputedData({
-  // //       id: "",
-  // //       company: "",
-  // //       role: "",
-  // //       firstName: "",
-  // //       lastName: "",
-  // //     });
-
-  // //     fetchData();
-  // //   }
-  // // };
+  const [data, setData] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [inputedData, setInputedData] = useState({
+    id: "",
+    company: "",
+    role: "",
+    firstName: "",
+    lastName: "",
+  });
 
   const deleteUserHandler = async (id) => {
     console.log(id);
     const response = await fetch(`/api/post/delete`, {
-      method: "POST",
+      method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         id,
@@ -99,148 +66,58 @@ export default function Users({ users }) {
     }
   };
 
-  // const handleDelete = async (id) => {
-  //   console.log(id);
-  //   const response = await fetch(`/api/post/delete`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       id,
-  //     }),
-  //   });
-  //   const json = await response.json();
-  //   // console.log(json);
-  //   fetchData();
-  // };
+  const handleEdit = async (id, company, role, firstName, lastName) => {
+    console.log(id, company, role, firstName, lastName);
+    setInputedData({ id, company, role, firstName, lastName });
+    setEditMode(true);
+  };
 
-  // const handleEdit = async (id, company, role, firstName, lastName) => {
-  //   console.log(id, company, role, firstName, lastName);
-  //   setInputedData({ id, company, role, firstName, lastName });
-  //   setEditMode(true);
-  // };
-
-  // const handleUpdate = async () => {
-  //   const response = await fetch(`/api/post/update`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       id: inputedData.id,
-  //       company: inputedData.company,
-  //       role: inputedData.role,
-  //       firstName: inputedData.firstName,
-  //       lastName: inputedData.lastName,
-  //     }),
-  //   });
-  //   const json = await response.json();
-  //   console.log(json);
-  //   setInputedData({
-  //     id: "",
-  //     company: "",
-  //     role: "",
-  //     firstName: "",
-  //     lastName: "",
-  //   });
-  //   setEditMode(false);
-  //   fetchData();
-  // };
+  const updateUserHandler = async () => {
+    const response = await fetch(`/api/post/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: inputedData.id,
+        company: inputedData.company,
+        role: inputedData.role,
+        firstName: inputedData.firstName,
+        lastName: inputedData.lastName,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+    setInputedData({
+      id: "",
+      company: "",
+      role: "",
+      firstName: "",
+      lastName: "",
+    });
+    setEditMode(false);
+    fetchData();
+  };
 
   // useEffect(() => {
   //   fetchData();
   // }, []);
 
-  // const { admins } = props;
-
   return (
     <AdminLayout>
       <div className={styles.content}>
         <h1 className={styles.heading_h1}>USERS</h1>
-        {/* {users.map((users) => (
-        <li key={users.id}>{users.company}</li>
-      ))} */}
-        <UserList users={users} onDeleteUser={deleteUserHandler} />
-
+        <UserList
+          users={userData}
+          onDeleteUser={deleteUserHandler}
+          onUpdateUser={updateUserHandler}
+        />
         <NewUserForm onAddUser={addUserHandler} />
-        {/* <h1>Users CRUD</h1>
-      <h2>CREATE</h2>
-      <form onSubmit={handleCreate}>
-        <input
-          value={inputedData.company}
-          type="text"
-          placeholder="company"
-          id="company"
-          onChange={(e) =>
-            setInputedData({ ...inputedData, company: e.target.value })
-          }
-        ></input>
-        <select
-          value={inputedData.role}
-          type="text"
-          placeholder="role"
-          id="role"
-          onChange={(e) =>
-            setInputedData({ ...inputedData, role: e.target.value })
-          }
-        >
-          <option value="BASIC">BASIC</option>
-          <option value="ADMIN">ADMIN</option>
-          <option value="DEVELOPER">DEVELOPER</option>
-        </select>
-        <input
-          value={inputedData.firstName}
-          type="text"
-          placeholder="first name"
-          id="firstName"
-          onChange={(e) =>
-            setInputedData({ ...inputedData, firstName: e.target.value })
-          }
-        ></input>
-        <input
-          value={inputedData.lastName}
-          type="text"
-          placeholder="last name"
-          id="lastName"
-          onChange={(e) =>
-            setInputedData({ ...inputedData, lastName: e.target.value })
-          }
-        ></input>
-        <button type="submit">Submit</button>
-      </form>
-      <h2>READ</h2>
-      <div>
-        {data.map(({ id, company, role, firstName, lastName }) => {
-          return (
-            <div key={id}>
-              <h2>
-                {firstName} {lastName}
-              </h2>
-              <h3>{company}</h3>
-              <p>{role}</p>
-              <button onClick={() => handleDelete(id)}>Delete User</button>
-              <button
-                onClick={() =>
-                  handleEdit(id, company, role, firstName, lastName)
-                }
-              >
-                Edit User
-              </button>
-              <ButtonTertiary
-                link={`/admin/users/${id}`}
-                id={id}
-                company={company}
-              >
-                Details
-              </ButtonTertiary>
-            </div>
-          );
-        })}
-      </div> */}
       </div>
     </AdminLayout>
   );
 }
 
 export async function getServerSideProps() {
-  const users = await prisma.user.findMany({
+  const getUsers = await prisma.user.findMany({
     orderBy: {
       createdAt: "desc",
     },
@@ -252,8 +129,18 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      users: JSON.parse(JSON.stringify(users)),
+      userData: JSON.parse(JSON.stringify(getUsers)),
     },
     // revalidate: 600,
   };
+}
+
+{
+  /* <ButtonTertiary
+link={`/admin/users/${id}`}
+id={id}
+company={company}
+>
+Details
+</ButtonTertiary> */
 }

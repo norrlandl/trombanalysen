@@ -149,6 +149,15 @@
         @include mixins.tableSpan;
       }
     }
+
+    &_blue {
+      color: rgb(37, 37, 91);
+
+      span {
+        background-color: rgb(227, 227, 242);
+        @include mixins.tableSpan;
+      }
+    }
   }
 }
 

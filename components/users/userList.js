@@ -11,6 +11,10 @@ export default function UserList(props, users) {
     props.onDeleteUser(id);
   }
 
+  function updateHandler(id) {
+    props.onUpdateUser(id);
+  }
+
   function detailsHandler(id) {
     const userId = id;
     console.log(id);
@@ -51,7 +55,9 @@ export default function UserList(props, users) {
                     className={`${
                       role === "ADMIN"
                         ? styles.table__tbody_td_green
-                        : styles.table__tbody_td_yellow
+                        : role === "DEVELOPER"
+                        ? styles.table__tbody_td_yellow
+                        : styles.table__tbody_td_blue
                     }`}
                   >
                     <span>{role}</span>
@@ -69,7 +75,7 @@ export default function UserList(props, users) {
                     </button>
                     <button
                       onClick={() =>
-                        handleEdit(id, company, role, firstName, lastName)
+                        updateHandler(id, company, role, firstName, lastName)
                       }
                       className={styles.table__button}
                     >
@@ -88,6 +94,7 @@ export default function UserList(props, users) {
                         <FiMoreVertical />
                       </span>
                     </button>
+                    {/* <Link></Link> */}
                   </td>
                 </tr>
               );
