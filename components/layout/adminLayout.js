@@ -5,7 +5,7 @@ export default function AdminLayout({ children }) {
   return (
     <div className={styles.layout}>
       <Sidebar />
-      {children}
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }

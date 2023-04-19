@@ -1,3 +1,9 @@
+@use "mixins.scss";
+
+.content {
+  @include mixins.adminContent;
+}
+
 .layout {
   display: flex;
   flex-direction: row;

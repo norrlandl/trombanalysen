@@ -100,15 +100,13 @@ export default function Users({ userData }) {
 
   return (
     <AdminLayout>
-      <div className={styles.content}>
-        <h1 className={styles.heading_h1}>USERS</h1>
-        <UserList
-          users={userData}
-          onDeleteUser={deleteUserHandler}
-          // onUpdateUser={updateUserHandler}
-        />
-        <NewUserForm onCreateUser={createUserHandler} />
-      </div>
+      <h1 className={styles.heading_h1}>USERS</h1>
+      <UserList
+        users={userData}
+        onDeleteUser={deleteUserHandler}
+        // onUpdateUser={updateUserHandler}
+      />
+      <NewUserForm onCreateUser={createUserHandler} />
     </AdminLayout>
   );
 }

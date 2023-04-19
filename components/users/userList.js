@@ -83,17 +83,15 @@ export default function UserList(props) {
                         <MdOutlineEdit />
                       </span>
                     </button>
-                    {/* <button
-                      // onClick={detailsHandler.bind(null, id)}
-                      // onClick={detailsHandler}
-                      onClick={() => detailsHandler(id)}
-                      className={styles.table__button}
+                    <Link
+                      href={`/admin/users/user/${id}`}
+                      className={styles.table__link}
+                      onDeleteUser={deleteHandler}
                     >
                       <span className={styles.table__icon}>
                         <FiMoreVertical />
                       </span>
-                    </button> */}
-                    <Link href={`/admin/users/user/${id}`}>Details</Link>
+                    </Link>
                   </td>
                 </tr>
               );

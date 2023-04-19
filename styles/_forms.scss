@@ -75,6 +75,16 @@
     }
   }
 
+  &__link {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.8rem;
+    border-radius: 100%;
+    font-size: 1.6rem;
+    color: colors.$color-grey-700;
+    background-color: colors.$color-grey-200;
+  }
+
   &__thead,
   &__tfoot {
     background-color: colors.$color-grey-100;
