@@ -52,6 +52,22 @@
   &__icon {
     text-decoration: none;
     display: flex;
+
+    &_delete {
+      color: colors.$color-red-dark;
+      background-color: colors.$color-red-light;
+    }
+
+    &_edit,
+    &_details {
+      color: colors.$color-grey-700;
+      background-color: colors.$color-grey-200;
+    }
+
+    &_analysis {
+      color: colors.$color-purple-dark;
+      background-color: colors.$color-purple-light;
+    }
   }
 
   &__button {
@@ -65,13 +81,6 @@
     &:first-child,
     &:nth-child(2) {
       margin-right: 2rem;
-      color: colors.$color-red-dark;
-      background-color: colors.$color-red-light;
-    }
-
-    &:nth-child(2) {
-      color: colors.$color-grey-700;
-      background-color: colors.$color-grey-200;
     }
   }
 

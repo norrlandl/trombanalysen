@@ -1,6 +1,5 @@
 import styles from "./userList.module.scss";
 import { MdDeleteOutline } from "react-icons/md";
-import { MdOutlineEdit } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import { useState } from "react";
 import Link from "next/link";
@@ -8,15 +7,6 @@ import Link from "next/link";
 export default function UserList(props) {
   function deleteHandler(id) {
     props.onDeleteUser(id);
-  }
-
-  function updateHandler(id) {
-    props.onUpdateUser(id);
-  }
-
-  function detailsHandler(id) {
-    const userId = id;
-    console.log(id);
   }
 
   return (
@@ -43,7 +33,6 @@ export default function UserList(props) {
                 .toISOString()
                 .slice(0, 11)
                 .replace("T", " ");
-              console.log(date);
 
               return (
                 <tr key={id} className={styles.table__tbody_tr}>
@@ -66,21 +55,10 @@ export default function UserList(props) {
                   <td className={styles.table__tbody_td}>
                     <button
                       onClick={() => deleteHandler(id)}
-                      className={styles.table__button}
+                      className={`${styles.table__button} ${styles.table__icon_delete}`}
                     >
-                      <span className={styles.table__icon}>
+                      <span className={`${styles.table__icon}`}>
                         <MdDeleteOutline />
-                      </span>
-                    </button>
-                    <button
-                      onClick={() =>
-                        updateHandler(id, company, role, firstName, lastName)
-                      }
-                      className={styles.table__button}
-                    >
-                      {" "}
-                      <span className={styles.table__icon}>
-                        <MdOutlineEdit />
                       </span>
                     </button>
                     <Link

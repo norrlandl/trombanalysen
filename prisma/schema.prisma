@@ -16,7 +16,7 @@ model User {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   company   String
-  role      Role    @default(BASIC)
+  role      Role      @default(BASIC)
   firstName String?
   lastName  String?
   email     String?
@@ -29,3 +29,29 @@ enum Role {
   DEVELOPER
 }
 
+model Analysis {
+  id                  String @id @default(uuid())
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  company             String
+  status              Status @default(PROGRESS)
+  accessibilityInfo   String?
+  accessibilityScore  Int?
+  responsiveInfo      String?
+  responsiveScore     Int?
+  seoInfo             String?
+  seoScore            Int?
+  performanceInfo     String?
+  performanceScore    Int?
+  brandInfo           String?
+  brandScore          Int?
+  designInfo          String?
+  designScore         Int?
+  contentInfo         String?
+  contentScore        Int?
+} 
+
+enum Status {
+  PROGRESS
+  DONE
+}

@@ -2,7 +2,7 @@ import styles from "./radarchart.module.scss";
 import Link from "next/link";
 
 import Image from "next/image";
-import img from "../public/img.svg";
+import img from "../../public/img.svg";
 
 export default function Radarchart() {
   return (

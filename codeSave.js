@@ -1,5 +1,25 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+// import { PrismaClient } from "@prisma/client";
+// const prisma = new PrismaClient();
+
+// id,
+// createdAt,
+// updatedAt,
+// company,
+// status,
+// accessibilityInfo,
+// accessibilityScore,
+// responsiveInfo,
+// responsiveScore,
+// seoInfo,
+// seoScore,
+// performanceInfo,
+// performanceScore,
+// brandInfo,
+// brandScore,
+// designInfo,
+// designScore,
+// contentInfo,
+// contentScore,
 
 // async function main() {
 //   const user = await prisma.user.create({
@@ -56,7 +76,7 @@ export default function Users() {
   // console.log(inputedData);
 
   const fetchData = async () => {
-    const response = await fetch(`/api/post/get`);
+    const response = await fetch(`/api/user/get`);
     const json = await response.json();
     setData(json);
   };
@@ -66,7 +86,7 @@ export default function Users() {
     if (editMode) {
       handleUpdate();
     } else {
-      const response = await fetch(`/api/post/create`, {
+      const response = await fetch(`/api/user/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -92,7 +112,7 @@ export default function Users() {
 
   const handleDelete = async (id) => {
     console.log(id);
-    const response = await fetch(`/api/post/delete`, {
+    const response = await fetch(`/api/user/delete`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -111,7 +131,7 @@ export default function Users() {
   };
 
   const handleUpdate = async () => {
-    const response = await fetch(`/api/post/update`, {
+    const response = await fetch(`/api/user/update`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -240,6 +260,16 @@ Create:
       return;
     }
   };
+
+
+
+<ButtonTertiary
+link={`/admin/users/${id}`}
+id={id}
+company={company}
+>
+Details
+</ButtonTertiary> 
 
 
 

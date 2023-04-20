@@ -14,12 +14,12 @@ const sidebarLinks = [
     icon: RxDashboard,
   },
   {
-    title: "Analysis",
-    link: "/admin/analysis",
+    title: "Analyses",
+    link: "/admin/analyses",
     icon: SiGoogleanalytics,
   },
   {
-    title: "User",
+    title: "Users",
     link: "/admin/users",
     icon: FaRegUserCircle,
   },
@@ -38,7 +38,7 @@ export default function Sidebar() {
         <ul className={styles.sidebar__list}>
           <li className={styles.sidebar__item_new}>
             <Link
-              href="/admin/analysis"
+              href="/admin/analyses"
               className={`${styles.sidebar__link} ${styles.sidebar__link_new}`}
             >
               <span

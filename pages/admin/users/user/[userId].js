@@ -1,21 +1,53 @@
 import { ButtonPrimary } from "@/components/ui/buttons";
 import { MdDeleteOutline } from "react-icons/md";
-import { MdOutlineEdit } from "react-icons/md";
-import { FiMoreVertical } from "react-icons/fi";
 import { prisma } from "../../../../prisma/client";
 import styles from "./userId.module.scss";
 import AdminLayout from "@/components/layout/adminLayout";
+import { useRef, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function UserDetails({ user, props }) {
-  console.log(user);
+  const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
 
-  const { id, firstName, lastName, email, createdAt, company, role } = user;
+  const { id, firstName, lastName, email, password, createdAt, company, role } =
+    user;
 
   const date = new Date(createdAt).toISOString().slice(0, 11).replace("T", " ");
 
   function deleteHandler(id) {
-    props.onDeleteUser(id);
+    console.log(id);
+    // props.onDeleteUser(id);
   }
+
+  const form = useRef();
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch(`/api/user/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: id,
+        firstName: form.current.firstName.value,
+        lastName: form.current.lastName.value,
+        email: form.current.email.value,
+        password: form.current.password.value,
+        company: form.current.company.value,
+        role: form.current.role.value,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+
+    if (response.status < 300) {
+      refreshData();
+    }
+    form.current.reset();
+  };
 
   return (
     <AdminLayout>
@@ -63,21 +95,10 @@ export default function UserDetails({ user, props }) {
               <td className={styles.table__tbody_td}>
                 <button
                   onClick={() => deleteHandler(id)}
-                  className={styles.table__button}
+                  className={`${styles.table__button} ${styles.table__icon_delete}`}
                 >
                   <span className={styles.table__icon}>
                     <MdDeleteOutline />
-                  </span>
-                </button>
-                <button
-                  onClick={() =>
-                    updateHandler(id, company, role, firstName, lastName)
-                  }
-                  className={styles.table__button}
-                >
-                  {" "}
-                  <span className={styles.table__icon}>
-                    <MdOutlineEdit />
                   </span>
                 </button>
               </td>
@@ -90,6 +111,100 @@ export default function UserDetails({ user, props }) {
           </tfoot>
         </table>
       </div>
+
+      <div>
+        <h4 className={styles.heading_h4}>Update user</h4>
+        <h5 className={styles.heading_h5}>Handle the user</h5>
+      </div>
+
+      <form onSubmit={submitHandler} ref={form} className={styles.form}>
+        <div className={styles.form__section}>
+          <label htmlFor="firstName" className={styles.form__label}>
+            First name
+          </label>
+          <input
+            type="text"
+            required
+            id="firstName"
+            defaultValue={firstName}
+            className={styles.form__input}
+          ></input>
+        </div>
+
+        <div className={styles.form__section}>
+          <label htmlFor="lastName" className={styles.form__label}>
+            Last name
+          </label>
+          <input
+            type="text"
+            required
+            id="lastName"
+            defaultValue={lastName}
+            className={styles.form__input}
+          ></input>
+        </div>
+
+        <div className={styles.form__section}>
+          <label htmlFor="email" className={styles.form__label}>
+            Email
+          </label>
+          <input
+            type="email"
+            required
+            id="email"
+            defaultValue={email}
+            className={styles.form__input}
+          ></input>
+        </div>
+
+        <div className={styles.form__section}>
+          <label htmlFor="password" className={styles.form__label}>
+            Password
+          </label>
+          <input
+            type="password"
+            required
+            id="password"
+            defaultValue={password}
+            className={styles.form__input}
+          ></input>
+        </div>
+
+        <div className={styles.form__section}>
+          <label htmlFor="company" className={styles.form__label}>
+            Company
+          </label>
+          <input
+            type="text"
+            required
+            id="company"
+            defaultValue={company}
+            className={styles.form__input}
+          ></input>
+        </div>
+
+        <div className={styles.form__section}>
+          <label htmlFor="role" className={styles.form__label}>
+            Role
+          </label>
+          <select
+            type="text"
+            required
+            id="role"
+            defaultValue={role}
+            className={`${styles.form__input} ${styles.form__input__select}`}
+          >
+            {" "}
+            <option value="BASIC">BASIC</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="DEVELOPER">DEVELOPER</option>
+          </select>
+        </div>
+
+        <div className={styles.form__section_button}>
+          <ButtonPrimary type="submit">Update</ButtonPrimary>
+        </div>
+      </form>
     </AdminLayout>
   );
 }

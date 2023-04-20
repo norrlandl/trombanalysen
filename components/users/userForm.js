@@ -1,14 +1,16 @@
 import { useRef } from "react";
-import styles from "./newUserForm.module.scss";
+import styles from "./userForm.module.scss";
 import { ButtonPrimary } from "@/components/ui/buttons";
 
-export default function NewUserForm(props) {
+export default function UserForm(props) {
   const firstNameInputRef = useRef("");
   const lastNameInputRef = useRef("");
   const emailInputRef = useRef("");
   const passwordInputRef = useRef("");
   const companyInputRef = useRef("");
   const roleInputRef = useRef("");
+
+  const form = useRef();
 
   function submitHandler(e) {
     e.preventDefault();
@@ -29,8 +31,8 @@ export default function NewUserForm(props) {
       role: enteredRole,
     };
 
-    // console.log(userData);
     props.onCreateUser(userData);
+    form.current.reset();
   }
 
   return (
@@ -41,7 +43,7 @@ export default function NewUserForm(props) {
           Remeber to set the Role, all users are basic as default
         </h5>
       </div>
-      <form onSubmit={submitHandler} className={styles.form}>
+      <form onSubmit={submitHandler} ref={form} className={styles.form}>
         <div className={styles.form__section}>
           <label htmlFor="firstName" className={styles.form__label}>
             First name
