@@ -1,12 +1,25 @@
+import { useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { MdDeleteOutline } from "react-icons/md";
-import { AiOutlineRadarChart } from "react-icons/ai";
 import { prisma } from "../../../../prisma/client";
 import styles from "./analysisId.module.scss";
 import AdminLayout from "@/components/layout/adminLayout";
-import { ButtonTertiary } from "@/components/ui/buttons";
+import { ButtonTertiary, ButtonPrimary } from "@/components/ui/buttons";
+import {
+  AiOutlineSound,
+  AiOutlineMobile,
+  AiOutlineSearch,
+  AiOutlineFundProjectionScreen,
+} from "react-icons/ai";
+import { FiSettings } from "react-icons/fi";
 
 export default function AnalysisDetails({ analysis }) {
-  console.log(analysis);
+  // console.log(analysis);
+
+  const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
 
   const {
     id,
@@ -14,13 +27,52 @@ export default function AnalysisDetails({ analysis }) {
     company,
     status,
     accessibilityScore,
+    accessibilityInfo,
     responsiveScore,
+    responsiveInfo,
     seoScore,
+    seoInfo,
+    performanceScore,
+    performanceInfo,
   } = analysis;
 
   const date = new Date(createdAt).toISOString().slice(0, 11).replace("T", " ");
 
   const newStatus = status === "PROGRESS" ? "In progress" : "Done";
+
+  const form = useRef();
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    const analysisUpdateData = {
+      id: id,
+      company: form.current.company.value,
+      status: form.current.status.value,
+      accessibilityScore: parseInt(form.current.accessibilityScore.value),
+      accessibilityInfo: form.current.accessibilityInfo.value,
+      responsiveScore: parseInt(form.current.responsiveScore.value),
+      responsiveInfo: form.current.responsiveInfo.value,
+      seoScore: parseInt(form.current.seoScore.value),
+      seoInfo: form.current.seoInfo.value,
+      performanceScore: parseInt(form.current.performanceScore.value),
+      performanceInfo: form.current.performanceInfo.value,
+    };
+
+    console.log(analysisUpdateData);
+
+    const response = await fetch(`/api/analysis/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(analysisUpdateData),
+    });
+    const json = await response.json();
+    console.log(json);
+
+    if (response.status < 300) {
+      refreshData();
+    }
+  };
 
   function deleteHandler(id) {
     props.onDeleteAnalysis(id);
@@ -87,7 +139,7 @@ export default function AnalysisDetails({ analysis }) {
                   className={`${styles.table__button} ${styles.table__icon_analysis}`}
                 >
                   <span className={styles.table__icon}>
-                    <AiOutlineRadarChart />
+                    <AiOutlineFundProjectionScreen />
                   </span>
                 </button>
               </td>
@@ -99,8 +151,167 @@ export default function AnalysisDetails({ analysis }) {
             </tr>
           </tfoot>
         </table>
-        <ButtonTertiary link="/admin/analyses">Tillbaka</ButtonTertiary>
       </div>
+
+      <div>
+        <h4 className={styles.heading_h4}>Update analysis</h4>
+        <h5 className={styles.heading_h5}>Handle the analysis</h5>
+      </div>
+
+      <form onSubmit={submitHandler} ref={form} className={styles.form}>
+        <div className={styles.form__section}>
+          <label htmlFor="company" className={styles.form__label}>
+            Company
+          </label>
+          <input
+            type="text"
+            required
+            id="company"
+            defaultValue={company}
+            className={styles.form__input}
+          ></input>
+        </div>
+
+        <div className={styles.form__section}>
+          <label htmlFor="status" className={styles.form__label}>
+            Status
+          </label>
+          <select
+            type="text"
+            required
+            id="status"
+            defaultValue={status}
+            className={`${styles.form__input} ${styles.form__input__select}`}
+          >
+            {" "}
+            <option value="PROGRESS">PROGRESS</option>
+            <option value="DONE">DONE</option>
+          </select>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineSound />
+            </span>
+            <h6 className={styles.heading_h6}>Accessibility</h6>
+          </div>
+
+          <label htmlFor="accessibilityScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="text"
+            inputMode="numeric"
+            id="accessibilityScore"
+            defaultValue={accessibilityScore}
+            name="accessibilityScore"
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="accessibilityInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            rows="10"
+            cols="50"
+            id="accessibilityInfo"
+            defaultValue={accessibilityInfo}
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineMobile />
+            </span>
+            <h6 className={styles.heading_h6}>Responsive</h6>
+          </div>
+
+          <label htmlFor="responsiveScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="responsiveScore"
+            defaultValue={responsiveScore}
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="responsiveInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="responsiveInfo"
+            defaultValue={responsiveInfo}
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineSearch />
+            </span>
+            <h6 className={styles.heading_h6}>SEO</h6>
+          </div>
+          <label htmlFor="seoScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="seoScore"
+            defaultValue={seoScore}
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="seoInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="seoInfo"
+            defaultValue={seoInfo}
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <FiSettings />
+            </span>
+            <h6 className={styles.heading_h6}>Performance</h6>
+          </div>
+          <label htmlFor="performanceScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="performanceScore"
+            defaultValue={performanceScore}
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="performanceInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="performanceInfo"
+            defaultValue={performanceInfo}
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={`${styles.form__textsection} ${styles.form__button}`}>
+          <ButtonPrimary type="submit">Update analysis</ButtonPrimary>
+        </div>
+      </form>
+      <ButtonTertiary link="/admin/analyses">Tillbaka</ButtonTertiary>
     </AdminLayout>
   );
 }

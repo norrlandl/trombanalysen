@@ -1,6 +1,12 @@
 import { useRef } from "react";
 import styles from "./analysisForm.module.scss";
 import { ButtonPrimary } from "@/components/ui/buttons";
+import {
+  AiOutlineSound,
+  AiOutlineMobile,
+  AiOutlineSearch,
+} from "react-icons/ai";
+import { FiSettings } from "react-icons/fi";
 
 export default function AnalysisForm(props) {
   // const companyInputRef = useRef("");
@@ -33,6 +39,8 @@ export default function AnalysisForm(props) {
       responsiveScore: parseInt(form.current.responsiveScore.value),
       seoInfo: form.current.seoInfo.value,
       seoScore: parseInt(form.current.seoScore.value),
+      performanceInfo: form.current.performanceInfo.value,
+      performanceScore: parseInt(form.current.performanceScore.value),
     };
 
     console.log(analysisInputedData);
@@ -60,20 +68,18 @@ export default function AnalysisForm(props) {
             type="text"
             required
             id="company"
-            // ref={companyInputRef}
             className={styles.form__input}
           ></input>
         </div>
 
         <div className={styles.form__section}>
-          <label htmlFor="role" className={styles.form__label}>
+          <label htmlFor="status" className={styles.form__label}>
             Status
           </label>
           <select
             type="text"
             required
             id="status"
-            // ref={statusInputRef}
             className={`${styles.form__input} ${styles.form__input__select}`}
           >
             {" "}
@@ -82,82 +88,118 @@ export default function AnalysisForm(props) {
           </select>
         </div>
 
-        <div className={styles.form__section}>
-          <label htmlFor="accessibilityInfo" className={styles.form__label}>
-            Accessibility Info
-          </label>
-          <input
-            type="text"
-            id="accessibilityInfo"
-            // ref={emailInputRef}
-            className={styles.form__input}
-          ></input>
-        </div>
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineSound />
+            </span>
+            <h6 className={styles.heading_h6}>Accessibility</h6>
+          </div>
 
-        <div className={styles.form__section}>
           <label htmlFor="accessibilityScore" className={styles.form__label}>
-            Accessibility Score
+            Score
           </label>
           <input
             type="text"
             inputMode="numeric"
             id="accessibilityScore"
             name="accessibilityScore"
-            // ref={emailInputRef}
             className={styles.form__input}
           ></input>
-        </div>
 
-        <div className={styles.form__section}>
-          <label htmlFor="responsiveInfo" className={styles.form__label}>
-            Responsive Info
+          <label htmlFor="accessibilityInfo" className={styles.form__label}>
+            Information
           </label>
-          <input
+          <textarea
             type="text"
-            id="responsiveInfo"
-            // ref={emailInputRef}
-            className={styles.form__input}
-          ></input>
+            rows="10"
+            cols="50"
+            id="accessibilityInfo"
+            className={styles.form__textarea}
+          ></textarea>
         </div>
 
-        <div className={styles.form__section}>
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineMobile />
+            </span>
+            <h6 className={styles.heading_h6}>Responsive</h6>
+          </div>
+
           <label htmlFor="responsiveScore" className={styles.form__label}>
-            Responsive Score
+            Score
           </label>
           <input
             type="number"
             id="responsiveScore"
-            // ref={emailInputRef}
             className={styles.form__input}
           ></input>
-        </div>
 
-        <div className={styles.form__section}>
-          <label htmlFor="seoInfo" className={styles.form__label}>
-            SEO Info
+          <label htmlFor="responsiveInfo" className={styles.form__label}>
+            Information
           </label>
-          <input
+          <textarea
             type="text"
-            id="seoInfo"
-            // ref={emailInputRef}
-            className={styles.form__input}
-          ></input>
+            id="responsiveInfo"
+            className={styles.form__textarea}
+          ></textarea>
         </div>
 
-        <div className={styles.form__section}>
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineSearch />
+            </span>
+            <h6 className={styles.heading_h6}>SEO</h6>
+          </div>
           <label htmlFor="seoScore" className={styles.form__label}>
-            SEO Score
+            Score
           </label>
           <input
             type="number"
             id="seoScore"
-            // ref={emailInputRef}
             className={styles.form__input}
           ></input>
+
+          <label htmlFor="seoInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="seoInfo"
+            className={styles.form__textarea}
+          ></textarea>
         </div>
 
-        <div className={styles.form__section_button}>
-          <ButtonPrimary type="submit">Submit</ButtonPrimary>
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <FiSettings />
+            </span>
+            <h6 className={styles.heading_h6}>Performance</h6>
+          </div>
+          <label htmlFor="performanceScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="performanceScore"
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="performanceInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="performanceInfo"
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={`${styles.form__textsection} ${styles.form__button}`}>
+          <ButtonPrimary type="submit">Add analysis</ButtonPrimary>
         </div>
       </form>
     </div>

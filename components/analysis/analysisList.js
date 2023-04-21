@@ -1,6 +1,7 @@
 import styles from "./analysisList.module.scss";
 import { MdDeleteOutline } from "react-icons/md";
 import { AiOutlineRadarChart } from "react-icons/ai";
+import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import { FiMoreVertical } from "react-icons/fi";
 import Link from "next/link";
 
@@ -90,7 +91,7 @@ export default function ProjectList(props) {
                       className={`${styles.table__link} ${styles.table__link_analysis}`}
                     >
                       <span className={styles.table__icon}>
-                        <AiOutlineRadarChart />
+                        <AiOutlineFundProjectionScreen />
                       </span>
                     </Link>
                     <Link

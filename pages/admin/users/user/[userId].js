@@ -46,7 +46,6 @@ export default function UserDetails({ user, props }) {
     if (response.status < 300) {
       refreshData();
     }
-    form.current.reset();
   };
 
   return (

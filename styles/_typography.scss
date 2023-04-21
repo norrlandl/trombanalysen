@@ -24,7 +24,6 @@ $font-size-default: 1.6rem;
   font-weight: 700;
   letter-spacing: 0.2rem;
   line-height: 7rem;
-  // color: $color-white;
   text-transform: uppercase;
   margin-bottom: 2.5rem;
 }
@@ -33,16 +32,12 @@ $font-size-default: 1.6rem;
   font-size: 4.4rem;
   font-weight: 700;
   line-height: 6rem;
-  // color: $color-white;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   margin-bottom: 1.5rem;
 }
 
 .heading_h3 {
-  // font-size: 3.2rem;
-  // font-weight: 700;
-  // text-transform: uppercase;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
@@ -52,10 +47,6 @@ $font-size-default: 1.6rem;
 }
 
 .heading_h4 {
-  // font-size: 2.4rem;
-  // font-weight: 500;
-  // letter-spacing: 0.2rem;
-  // margin: 2rem 0;
   font-size: 1.8rem;
   font-weight: 500;
   margin: 1.2rem 0;
@@ -64,17 +55,20 @@ $font-size-default: 1.6rem;
 }
 
 .heading_h5 {
-  // font-size: 2rem;
-  // font-weight: 700;
-  // letter-spacing: 0.1rem;
-  // text-transform: uppercase;
-  // color: colors.$color-grey-500;
-  // margin: 1rem 0;
   font-size: 1.2rem;
   font-weight: 300;
   margin: 0 0 2rem 0;
   font-family: $font_manrope;
   color: colors.$color-grey-400;
+}
+
+.heading_h6 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 1.2rem 0 1.2rem 1rem;
+  display: inline-block;
+  font-family: $font_manrope;
+  color: colors.$color-grey-700;
 }
 
 .paragraph {

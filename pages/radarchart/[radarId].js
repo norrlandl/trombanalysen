@@ -1,9 +1,15 @@
 import styles from "./radarchart.module.scss";
 import Link from "next/link";
-import Radar from "react-d3-radar";
 import Image from "next/image";
 import img from "../../public/img.svg";
 import { prisma } from "../../prisma/client";
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+} from "recharts";
 
 export default function Radarchart({ analysis }) {
   console.log(analysis);
@@ -12,10 +18,21 @@ export default function Radarchart({ analysis }) {
     accessibilityScore,
     responsiveScore,
     seoScore,
+    performanceScore,
     brandScore,
     designScore,
-    ContentScore,
+    contentScore,
   } = analysis;
+
+  const radarChartData = [
+    { name: "Accessibility", value: accessibilityScore },
+    { name: "Responsive", value: responsiveScore },
+    { name: "SEO", value: seoScore },
+    { name: "Performance", value: performanceScore },
+    { name: "Brand", value: brandScore },
+    { name: "Design", value: designScore },
+    { name: "Content", value: contentScore },
+  ];
 
   return (
     <div className={styles.flexContainer}>
@@ -34,50 +51,25 @@ export default function Radarchart({ analysis }) {
             </a>
           </Link>
           <div>
-            {accessibilityScore}
-            {/* <div>
-              <Radar
-                width={500}
+            <div>
+              <RadarChart
                 height={500}
-                padding={80}
-                domainMax={10}
-                highlighted={null}
-                // onHover={(point) => {
-                //   if (point) {
-                //     console.log("hovered over a data point", point);
-                //   } else {
-                //     console.log("not over anything");
-                //   }
-                // }}
-                data={{
-                  variables: [
-                    {
-                      key: "accessibility",
-                      label: "Accessibility",
-                    },
-                    { key: "strength", label: "Strength" },
-                    { key: "adaptability", label: "Adaptability" },
-                    { key: "creativity", label: "Creativity" },
-                    { key: "openness", label: "Open to Change" },
-                    { key: "confidence", label: "Confidence" },
-                  ],
-                  sets: [
-                    {
-                      key: "me",
-                      label: "My Scores",
-                      values: {
-                        accessibility: accessibilityScore,
-                        strength: responsiveScore,
-                        adaptability: seoScore,
-                        creativity: accessibilityScore,
-                        openness: { accessibilityScore },
-                        confidence: { accessibilityScore },
-                      },
-                    },
-                  ],
-                }}
-              />
-            </div> */}
+                width={500}
+                outerRadius="80%"
+                data={radarChartData}
+              >
+                <PolarGrid />
+                <PolarAngleAxis dataKey="name" />
+                <PolarRadiusAxis angle={60} domain={[0, 100]} />
+                <Radar
+                  dataKey="value"
+                  stroke="#014147"
+                  fill="#A6DDD8"
+                  strokeWidth={2}
+                  fillOpacity={0.6}
+                />
+              </RadarChart>
+            </div>
           </div>
         </div>
       </div>
