@@ -1,3 +1,5 @@
+@use "colors.scss";
+
 @mixin centerFlexbox {
   justify-content: center;
   align-items: center;
@@ -44,4 +46,19 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
   text-transform: lowercase;
+}
+
+@mixin iconColorBlue {
+  color: colors.$color-primary-900;
+  background-color: colors.$color-blue-light;
+}
+
+@mixin iconColorRed {
+  color: colors.$color-red-dark;
+  background-color: colors.$color-red-light;
+}
+
+@mixin iconColorGrey {
+  color: colors.$color-grey-700;
+  background-color: colors.$color-grey-200;
 }

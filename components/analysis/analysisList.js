@@ -74,12 +74,9 @@ export default function ProjectList(props) {
                   <td className={styles.table__tbody_td}>
                     {totalScore == 0 ? "" : `${totalScore} / 700`}
                   </td>
-                  {/* <td className={styles.table__tbody_td}>
-                    {accessibilityScore == null
-                      ? ""
-                      : `${accessibilityScore} / 100`}
-                  </td> */}
-                  <td className={styles.table__tbody_td}>
+                  <td
+                    className={`${styles.table__tbody_td} ${styles.table__tbody_td_actions}`}
+                  >
                     <button
                       onClick={() => deleteHandler(id)}
                       className={`${styles.table__button} ${styles.table__icon_delete}`}
@@ -88,20 +85,9 @@ export default function ProjectList(props) {
                         <MdDeleteOutline />
                       </span>
                     </button>
-                    <button
-                      onClick={() =>
-                        updateHandler(id, company, role, firstName, lastName)
-                      }
-                      className={`${styles.table__button} ${styles.table__icon_analysis}`}
-                    >
-                      {" "}
-                      <span className={styles.table__icon}>
-                        <AiOutlineRadarChart />
-                      </span>
-                    </button>
                     <Link
                       href={`/radarchart/${id}`}
-                      className={styles.table__link}
+                      className={`${styles.table__link} ${styles.table__link_analysis}`}
                     >
                       <span className={styles.table__icon}>
                         <AiOutlineRadarChart />
@@ -109,7 +95,7 @@ export default function ProjectList(props) {
                     </Link>
                     <Link
                       href={`/admin/analyses/analysis/${id}`}
-                      className={styles.table__link}
+                      className={`${styles.table__link} ${styles.table__link_details}`}
                     >
                       <span className={styles.table__icon}>
                         <FiMoreVertical />

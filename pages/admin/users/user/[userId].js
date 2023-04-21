@@ -17,10 +17,10 @@ export default function UserDetails({ user, props }) {
 
   const date = new Date(createdAt).toISOString().slice(0, 11).replace("T", " ");
 
-  function deleteHandler(id) {
-    console.log(id);
-    // props.onDeleteUser(id);
-  }
+  // function deleteHandler(id) {
+  //   console.log(id);
+  //   props.onDeleteUser(id);
+  // }
 
   const form = useRef();
 
@@ -94,7 +94,7 @@ export default function UserDetails({ user, props }) {
               <td className={styles.table__tbody_td}>{date}</td>
               <td className={styles.table__tbody_td}>
                 <button
-                  onClick={() => deleteHandler(id)}
+                  // onClick={() => deleteHandler(id)}
                   className={`${styles.table__button} ${styles.table__icon_delete}`}
                 >
                   <span className={styles.table__icon}>

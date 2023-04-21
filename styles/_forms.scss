@@ -54,19 +54,16 @@
     display: flex;
 
     &_delete {
-      color: colors.$color-red-dark;
-      background-color: colors.$color-red-light;
+      @include mixins.iconColorRed;
     }
 
     &_edit,
     &_details {
-      color: colors.$color-grey-700;
-      background-color: colors.$color-grey-200;
+      @include mixins.iconColorGrey;
     }
 
     &_analysis {
-      color: colors.$color-purple-dark;
-      background-color: colors.$color-purple-light;
+      @include mixins.iconColorBlue;
     }
   }
 
@@ -78,10 +75,10 @@
     font-size: 1.6rem;
     cursor: pointer;
 
-    &:first-child,
-    &:nth-child(2) {
-      margin-right: 2rem;
-    }
+    // &:first-child,
+    // &:nth-child(2) {
+    //   margin-right: 2rem;
+    // }
   }
 
   &__link {
@@ -90,8 +87,14 @@
     padding: 0.8rem;
     border-radius: 100%;
     font-size: 1.6rem;
-    color: colors.$color-grey-700;
-    background-color: colors.$color-grey-200;
+
+    &_details {
+      @include mixins.iconColorGrey;
+    }
+
+    &_analysis {
+      @include mixins.iconColorBlue;
+    }
   }
 
   &__thead,
@@ -149,6 +152,12 @@
       font-weight: 300;
       letter-spacing: 0.2px;
       color: colors.$color-grey-400;
+    }
+
+    &_actions {
+      *:not(:last-child) {
+        margin-right: 2rem;
+      }
     }
 
     &_green {

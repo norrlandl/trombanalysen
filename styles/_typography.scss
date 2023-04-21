@@ -40,9 +40,15 @@ $font-size-default: 1.6rem;
 }
 
 .heading_h3 {
-  font-size: 3.2rem;
+  // font-size: 3.2rem;
+  // font-weight: 700;
+  // text-transform: uppercase;
+  font-size: 2rem;
   font-weight: 700;
+  letter-spacing: 0.1rem;
   text-transform: uppercase;
+  color: colors.$color-grey-500;
+  margin: 1rem 0;
 }
 
 .heading_h4 {

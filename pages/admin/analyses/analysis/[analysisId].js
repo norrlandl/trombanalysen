@@ -1,5 +1,4 @@
 import { MdDeleteOutline } from "react-icons/md";
-import { MdOutlineEdit } from "react-icons/md";
 import { AiOutlineRadarChart } from "react-icons/ai";
 import { prisma } from "../../../../prisma/client";
 import styles from "./analysisId.module.scss";
@@ -24,7 +23,7 @@ export default function AnalysisDetails({ analysis }) {
   const newStatus = status === "PROGRESS" ? "In progress" : "Done";
 
   function deleteHandler(id) {
-    props.onDeleteUser(id);
+    props.onDeleteAnalysis(id);
   }
 
   return (
@@ -73,7 +72,9 @@ export default function AnalysisDetails({ analysis }) {
               <td className={styles.table__tbody_td}>
                 {seoScore == null ? "" : `${seoScore} / 100`}
               </td>
-              <td className={styles.table__tbody_td}>
+              <td
+                className={`${styles.table__tbody_td} ${styles.table__tbody_td_actions}`}
+              >
                 <button
                   onClick={() => deleteHandler(id)}
                   className={`${styles.table__button} ${styles.table__icon_delete}`}

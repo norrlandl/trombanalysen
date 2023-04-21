@@ -52,7 +52,9 @@ export default function UserList(props) {
                   </td>
                   <td className={styles.table__tbody_td}>{company}</td>
                   <td className={styles.table__tbody_td}>{date}</td>
-                  <td className={styles.table__tbody_td}>
+                  <td
+                    className={`${styles.table__tbody_td} ${styles.table__tbody_td_actions}`}
+                  >
                     <button
                       onClick={() => deleteHandler(id)}
                       className={`${styles.table__button} ${styles.table__icon_delete}`}
@@ -63,8 +65,8 @@ export default function UserList(props) {
                     </button>
                     <Link
                       href={`/admin/users/user/${id}`}
-                      className={styles.table__link}
-                      onDeleteUser={deleteHandler}
+                      className={`${styles.table__link} ${styles.table__link_details}`}
+                      // onDeleteUser={deleteHandler}
                     >
                       <span className={styles.table__icon}>
                         <FiMoreVertical />
