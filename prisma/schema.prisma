@@ -17,10 +17,10 @@ model User {
   updatedAt DateTime  @updatedAt
   company   String
   role      Role      @default(BASIC)
-  firstName String?
+  firstName String
   lastName  String?
-  email     String?
-  password  String? 
+  email     String    @unique
+  password  String
 }
 
 enum Role {
@@ -55,3 +55,7 @@ enum Status {
   PROGRESS
   DONE
 }
+
+
+//npx prisma db push
+//npx prisma studio
