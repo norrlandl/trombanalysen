@@ -10,8 +10,10 @@ import {
   AiOutlineMobile,
   AiOutlineSearch,
   AiOutlineFundProjectionScreen,
+  AiOutlineTrademark,
 } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
+import { BiPaint } from "react-icons/bi";
 
 export default function AnalysisDetails({ analysis }) {
   // console.log(analysis);
@@ -34,6 +36,12 @@ export default function AnalysisDetails({ analysis }) {
     seoInfo,
     performanceScore,
     performanceInfo,
+    brandScore,
+    brandInfo,
+    designScore,
+    designInfo,
+    contentScore,
+    contentInfo,
   } = analysis;
 
   const date = new Date(createdAt).toISOString().slice(0, 11).replace("T", " ");
@@ -57,6 +65,12 @@ export default function AnalysisDetails({ analysis }) {
       seoInfo: form.current.seoInfo.value,
       performanceScore: parseInt(form.current.performanceScore.value),
       performanceInfo: form.current.performanceInfo.value,
+      brandScore: parseInt(form.current.brandScore.value),
+      brandInfo: form.current.brandInfo.value,
+      designScore: parseInt(form.current.designScore.value),
+      designInfo: form.current.designInfo.value,
+      contentScore: parseInt(form.current.contentScore.value),
+      contentInfo: form.current.contentInfo.value,
     };
 
     console.log(analysisUpdateData);
@@ -307,11 +321,95 @@ export default function AnalysisDetails({ analysis }) {
           ></textarea>
         </div>
 
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineTrademark />
+            </span>
+            <h6 className={styles.heading_h6}>Brand</h6>
+          </div>
+          <label htmlFor="brandScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="brandScore"
+            defaultValue={brandScore}
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="brandInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="brandInfo"
+            defaultValue={brandInfo}
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <BiPaint />
+            </span>
+            <h6 className={styles.heading_h6}>Design</h6>
+          </div>
+          <label htmlFor="designScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="designScore"
+            defaultValue={designScore}
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="designInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="designInfo"
+            defaultValue={designInfo}
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <BiPaint />
+            </span>
+            <h6 className={styles.heading_h6}>Content</h6>
+          </div>
+          <label htmlFor="contentScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="contentScore"
+            defaultValue={contentScore}
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="contentInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="contentInfo"
+            defaultValue={contentInfo}
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
         <div className={`${styles.form__textsection} ${styles.form__button}`}>
           <ButtonPrimary type="submit">Update analysis</ButtonPrimary>
         </div>
       </form>
-      <ButtonTertiary link="/admin/analyses">Tillbaka</ButtonTertiary>
+      <ButtonTertiary link="/admin/analyses"> &larr; Tillbaka</ButtonTertiary>
     </AdminLayout>
   );
 }

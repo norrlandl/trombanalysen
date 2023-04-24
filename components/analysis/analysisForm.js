@@ -5,8 +5,11 @@ import {
   AiOutlineSound,
   AiOutlineMobile,
   AiOutlineSearch,
+  AiOutlineRead,
+  AiOutlineTrademark,
 } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
+import { BiPaint } from "react-icons/bi";
 
 export default function AnalysisForm(props) {
   // const companyInputRef = useRef("");
@@ -41,6 +44,12 @@ export default function AnalysisForm(props) {
       seoScore: parseInt(form.current.seoScore.value),
       performanceInfo: form.current.performanceInfo.value,
       performanceScore: parseInt(form.current.performanceScore.value),
+      brandInfo: form.current.brandInfo.value,
+      brandScore: parseInt(form.current.brandScore.value),
+      designInfo: form.current.designInfo.value,
+      designScore: parseInt(form.current.designScore.value),
+      contentInfo: form.current.contentInfo.value,
+      contentScore: parseInt(form.current.contentScore.value),
     };
 
     console.log(analysisInputedData);
@@ -194,6 +203,84 @@ export default function AnalysisForm(props) {
           <textarea
             type="text"
             id="performanceInfo"
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineTrademark />
+            </span>
+            <h6 className={styles.heading_h6}>Brand</h6>
+          </div>
+          <label htmlFor="brandScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="brandScore"
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="brandInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="brandInfo"
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <BiPaint />
+            </span>
+            <h6 className={styles.heading_h6}>Design</h6>
+          </div>
+          <label htmlFor="designScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="designScore"
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="designInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="designInfo"
+            className={styles.form__textarea}
+          ></textarea>
+        </div>
+
+        <div className={styles.form__textsection}>
+          <div className={styles.form__textsection_header}>
+            <span className={styles.form__icon}>
+              <AiOutlineRead />
+            </span>
+            <h6 className={styles.heading_h6}>Content</h6>
+          </div>
+          <label htmlFor="contentScore" className={styles.form__label}>
+            Score
+          </label>
+          <input
+            type="number"
+            id="contentScore"
+            className={styles.form__input}
+          ></input>
+
+          <label htmlFor="contentInfo" className={styles.form__label}>
+            Information
+          </label>
+          <textarea
+            type="text"
+            id="contentInfo"
             className={styles.form__textarea}
           ></textarea>
         </div>

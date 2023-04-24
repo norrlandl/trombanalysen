@@ -1,7 +1,6 @@
 import styles from "./radarchart.module.scss";
 import Link from "next/link";
-import Image from "next/image";
-import img from "../../public/img.svg";
+import { ButtonTertiary, ButtonPrimary } from "@/components/ui/buttons";
 import { prisma } from "../../prisma/client";
 import {
   Radar,
@@ -45,38 +44,34 @@ export default function Radarchart({ analysis }) {
             quis integer senectus elementum. Aliquet massa tellus vehicula fames
             aliquet.
           </p>
+          <ButtonTertiary link="/admin/analyses">
+            &larr; Tillbaka
+          </ButtonTertiary>
           <Link href="/accessibility" legacyBehavior>
             <a className={`${styles.btn} ${styles.btn__primary}`}>
               Dive deeper &rarr;
             </a>
           </Link>
-          <div>
-            <div>
-              <RadarChart
-                height={500}
-                width={500}
-                outerRadius="80%"
-                data={radarChartData}
-              >
-                <PolarGrid />
-                <PolarAngleAxis dataKey="name" />
-                <PolarRadiusAxis angle={60} domain={[0, 100]} />
-                <Radar
-                  dataKey="value"
-                  stroke="#014147"
-                  fill="#A6DDD8"
-                  strokeWidth={2}
-                  fillOpacity={0.6}
-                />
-              </RadarChart>
-            </div>
-          </div>
         </div>
       </div>
       <div className={styles.item}>
-        <div className={styles.item__img}>
-          <Image src={img} className={styles.logo} alt="logo" />
-        </div>
+        <RadarChart
+          height={500}
+          width={500}
+          outerRadius="80%"
+          data={radarChartData}
+        >
+          <PolarGrid />
+          <PolarAngleAxis dataKey="name" />
+          {/* <PolarRadiusAxis angle={60} domain={[0, 100]} /> */}
+          <Radar
+            dataKey="value"
+            stroke="#014147"
+            fill="#A6DDD8"
+            strokeWidth={2}
+            fillOpacity={0.6}
+          />
+        </RadarChart>
       </div>
     </div>
   );
