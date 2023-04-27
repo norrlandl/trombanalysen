@@ -21,27 +21,7 @@
 // contentInfo,
 // contentScore,
 
-// async function main() {
-//   const user = await prisma.user.create({
-//     data: {
-//       company: "Tromb",
-//       role: "Basic",
-//       firstName: "Elvira",
-//       lastName: "Öberg",
-//     },
-//   });
-//   console.log(user);
-// }
-
-// main()
-//   .then(async () => {
-//     await prisma.$disconnect();
-//   })
-//   .catch(async (e) => {
-//     console.error(e);
-//     await prisma.$disconnect();
-//     process.exit(1);
-//   });
+// 9d8a649b8231461aa3483928afe9112bab285b5ae38a06a81c3f590238ee47da
 
 /*
 
