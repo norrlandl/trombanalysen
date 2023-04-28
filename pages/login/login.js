@@ -5,6 +5,7 @@ import img from "../../public/img.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import AuthForm from "@/components/auth/auth-form";
 
 export default function Login() {
   return (
@@ -21,6 +22,8 @@ export default function Login() {
           </p>
         </div>
 
+        <AuthForm />
+
         <form
           action="/send-data-here"
           method="post"
@@ -33,7 +36,7 @@ export default function Login() {
             id="username"
             required
           />
-          <label className={styles.loginform__label} for="username">
+          <label className={styles.loginform__label} htmlFor="username">
             Username
           </label>
 
@@ -45,7 +48,7 @@ export default function Login() {
             required
           />
 
-          <label className={styles.loginform__label} for="password">
+          <label className={styles.loginform__label} htmlFor="password">
             Password
           </label>
 
