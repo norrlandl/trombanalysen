@@ -1,10 +1,7 @@
 import styles from "./login.module.scss";
 import Image from "next/image";
 import img from "../../public/img.svg";
-
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
 import AuthForm from "@/components/auth/auth-form";
 
 export default function Login() {

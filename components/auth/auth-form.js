@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 // import classes from "./auth-form.module.css";
+import { signIn } from "next-auth/react";
 
-function AuthForm(userData) {
-  console.log(userData);
+function AuthForm() {
   const emailInputRef = useRef("");
   const passwordInputRef = useRef("");
 
@@ -14,6 +14,37 @@ function AuthForm(userData) {
 
   async function submitHandler(event) {
     event.preventDefault();
+
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+
+    // New
+
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+
+    //*** */
+
+    // const result = await signIn("credentials", {
+    //   redirect: false,
+    //   email: enteredEmail,
+    //   password: enteredPassword,
+    // });
+
+    // console.log(result);
+
+    // if (!result.error) {
+    //   // set auth state
+    // }
   }
 
   return (

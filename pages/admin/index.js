@@ -3,8 +3,13 @@ import AdminLayout from "@/components/layout/adminLayout";
 import styles from "./index.module.scss";
 
 import { ButtonPrimary } from "@/components/ui/buttons";
+import { useSession } from "next-auth/react";
 
 export default function Admin() {
+  // const [session, loading] = useSession();
+  // const { data: session, status } = useSession();
+  // const loading = status === "loading";
+
   return (
     <AdminLayout>
       <h1 className={styles.heading_h1}>DASHBOARD</h1>

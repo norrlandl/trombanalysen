@@ -5,7 +5,7 @@ import "../styles/styles.scss";
 import { Fragment } from "react";
 import Navbar from "@/components/layout/navbar";
 import Layout from "@/components/layout/layout";
-// import { SessionProvider } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 // import { getServerSession } from "next-auth";
 // import { authOptions } from "./api/auth/[...nextauth]";
 
@@ -29,10 +29,23 @@ import Layout from "@/components/layout/layout";
 //   variable: "--font-quicksand",
 // });
 
-export default function App({ Component, pageProps }) {
+// export default function App({ Component, pageProps }) {
+//   return (
+//     <Layout>
+//       <Component {...pageProps} />
+//     </Layout>
+//   );
+// }
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SessionProvider session={session} refetchInterval={1 * 60}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </SessionProvider>
   );
 }
