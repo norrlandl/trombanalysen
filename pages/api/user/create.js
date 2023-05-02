@@ -26,6 +26,19 @@ export default async function handler(req, res) {
     return;
   }
 
+  // Does user already exist?
+
+  const existingUser = await prisma.user.findFirst({
+    where: {
+      email: email,
+    },
+  });
+
+  if (existingUser) {
+    res.status(422).json({ message: "User exists already!" });
+    return;
+  }
+
   // Hash password
 
   const hashedPassword = await hashPassword(password);
