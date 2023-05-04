@@ -19,8 +19,8 @@ model User {
   role      Role      @default(BASIC)
   firstName String
   lastName  String?
-  email     String    @unique
-  password  String
+  email     String?    @unique
+  password  String?
 }
 
 enum Role {

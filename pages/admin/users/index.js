@@ -6,6 +6,7 @@ import styles from "./index.module.scss";
 import UserForm from "../../../components/users/user-form";
 import UserList from "@/components/users/user-list";
 import AdminLayout from "@/components/layout/adminLayout";
+import UserFormNew from "@/components/users/user-form-2";
 
 export default function Users({ userData, props }) {
   const router = useRouter();
@@ -45,6 +46,7 @@ export default function Users({ userData, props }) {
     <AdminLayout>
       <h1 className={styles.heading_h1}>USERS</h1>
       <UserList users={userData} onDeleteUser={deleteUserHandler} />
+      <UserFormNew onCreateUser={createUserHandler} />
       <UserForm onCreateUser={createUserHandler} />
     </AdminLayout>
   );

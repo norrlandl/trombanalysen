@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { ButtonPrimary } from "../ui/buttons";
-import styles from "./userForm.module.scss";
+import styles from "./user-form.module.scss";
 
 export default function UserForm(props) {
   const firstNameInputRef = useRef("");

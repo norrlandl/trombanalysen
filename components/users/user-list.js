@@ -1,4 +1,4 @@
-import styles from "./userList.module.scss";
+import styles from "./user-list.module.scss";
 import { MdDeleteOutline } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import { useState } from "react";
