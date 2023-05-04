@@ -25,15 +25,6 @@
 
 /*
 
-***** WORKING CRUD CODE *****
-
- <ButtonTertiary
-link={`/admin/users/${id}`}
-id={id}
-company={company}
->
-Details
-</ButtonTertiary>
 
 
 ***** WORKING CRUD CODE *****
@@ -209,38 +200,6 @@ export default function Users() {
 
 ***** CODE LIBARY *****
 
-Create:
-
- const handleSubmit = async (e) => {
-    if (company && role) {
-      // send a request to the server.
-      try {
-        const body = {
-          // id,
-          company,
-          role,
-          firstName,
-          lastName,
-          // email,
-          // password,
-          // createdAt,
-          // updatedAt,
-        };
-        await fetch(`/api/post`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
-        await Router.push("/admin/users");
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      setError("All fields are required");
-      return;
-    }
-  };
-
 
 
 <ButtonTertiary
@@ -252,13 +211,9 @@ Details
 </ButtonTertiary> 
 
 
-export default function App({ Component, pageProps }) {
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  );
-}
+***** NEXT AUTH *****
+
+https://www.youtube.com/watch?v=4BJMq1yxCOs
 
 
 

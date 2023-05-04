@@ -1,6 +1,6 @@
 import { useRef } from "react";
+import { ButtonPrimary } from "../ui/buttons";
 import styles from "./userForm.module.scss";
-import { ButtonPrimary } from "@/components/ui/buttons";
 
 export default function UserForm(props) {
   const firstNameInputRef = useRef("");
@@ -43,6 +43,7 @@ export default function UserForm(props) {
           Remeber to set the Role, all users are basic as default
         </h5>
       </div>
+
       <form onSubmit={submitHandler} ref={form} className={styles.form}>
         <div className={styles.form__section}>
           <label htmlFor="firstName" className={styles.form__label}>

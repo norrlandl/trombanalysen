@@ -1,8 +1,9 @@
 import { useState, useRef } from "react";
 // import classes from "./auth-form.module.css";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function AuthForm() {
+  const { data, status } = useSession();
   const emailInputRef = useRef("");
   const passwordInputRef = useRef("");
 
@@ -12,7 +13,7 @@ function AuthForm() {
     setIsLogin((prevState) => !prevState);
   }
 
-  async function submitHandler(event) {
+  async function submitSignIn(event) {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
@@ -25,6 +26,7 @@ function AuthForm() {
         redirect: false,
         email: enteredEmail,
         password: enteredPassword,
+        // callbackUrl: "/admin",
       });
 
       console.log(result);
@@ -49,7 +51,9 @@ function AuthForm() {
 
   return (
     <section>
-      <form>
+      <h1>Status: {status}</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <form onSubmit={submitSignIn}>
         <div>
           <label htmlFor="email">Your Email</label>
           <input type="email" id="email" required ref={emailInputRef} />
@@ -64,8 +68,8 @@ function AuthForm() {
           />
         </div>
         <div>
-          <button>Login</button>
-          <button type="button" onClick={switchAuthModeHandler}></button>
+          {data && <button onClick={signOut}>Log out</button>}
+          <button type="submit">Login</button>
         </div>
       </form>
     </section>

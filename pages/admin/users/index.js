@@ -3,8 +3,8 @@ import { prisma } from "../../../prisma/client";
 import { useRouter } from "next/router";
 
 import styles from "./index.module.scss";
-import UserForm from "../../../components/users/userForm";
-import UserList from "@/components/users/userList";
+import UserForm from "../../../components/users/user-form";
+import UserList from "@/components/users/user-list";
 import AdminLayout from "@/components/layout/adminLayout";
 
 export default function Users({ userData, props }) {
