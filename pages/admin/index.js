@@ -3,13 +3,27 @@ import styles from "./index.module.scss";
 import { ButtonPrimary } from "@/components/ui/buttons";
 // import { getServerSession } from "next-auth/next";
 // import { authOptions } from "../api/auth/[...nextauth]";
-
 // import { useSession } from "next-auth/react";
 
+import { getSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+
 export default function Admin() {
-  // const [session, loading] = useSession();
-  // const { data: session, status } = useSession();
-  // const loading = status === "loading";
+  // const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   getSession().then((session) => {
+  //     if (!session) {
+  //       window.location.href = "/";
+  //     } else {
+  //       setIsLoading(false);
+  //     }
+  //   });
+  // }, []);
+
+  // if (isLoading) {
+  //   return <p>Loading..</p>;
+  // } else {}
 
   return (
     <AdminLayout>
@@ -24,21 +38,26 @@ export default function Admin() {
   );
 }
 
-// export async function getServerSideProps(ctx) {
-//   const session = await getServerSession(ctx.req, ctx.res, authOptions);
+// const { data, status } = useSession();
 
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
 
-//   return {
-//     props: {
-//       user: session.user,
-//     },
-//   };
-// }
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+    // props: {
+    //   user: session.user,
+    // },
+  };
+}

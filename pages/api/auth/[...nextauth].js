@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "../../../prisma/client";
 import { verifyPassword } from "@/lib/auth";
-// import { PrismaAdapter } from "@prisma/client";
 
 export const authOptions = {
   session: {
@@ -49,8 +48,7 @@ export const authOptions = {
 
         prisma.$disconnect();
 
-        // return { email: user.email, name: user.lastName,};
-        return user;
+        return { email: user.email };
       },
     }),
   ],

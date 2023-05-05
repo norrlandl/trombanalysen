@@ -1,7 +1,10 @@
 import Input from "@/lib/input";
-import { useRef, useState } from "react";
 import { ButtonPrimary } from "../ui/buttons";
 import styles from "./user-form.module.scss";
+
+// Kan flyttas?
+const isNotEmpty = (value) => value.trim() !== "";
+const isEmail = (value) => value.includes("@");
 
 export default function UserFormNew(props) {
   const {
@@ -11,7 +14,7 @@ export default function UserFormNew(props) {
     valueChangeHandler: firstNameChangeHandler,
     inputBlurHandler: firstNameBlurHandler,
     reset: resetFirstNameInput,
-  } = Input((value) => value.trim() !== "");
+  } = Input(isNotEmpty);
 
   const {
     value: enteredLastName,
@@ -20,7 +23,7 @@ export default function UserFormNew(props) {
     valueChangeHandler: lastNameChangeHandler,
     inputBlurHandler: lastNameBlurHandler,
     reset: resetLastNameInput,
-  } = Input((value) => value.trim() !== "");
+  } = Input(isNotEmpty);
 
   const {
     value: enteredEmail,
@@ -29,7 +32,7 @@ export default function UserFormNew(props) {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmailInput,
-  } = Input((value) => value.includes("@"));
+  } = Input(isEmail);
 
   const {
     value: enteredPassword,
@@ -38,7 +41,7 @@ export default function UserFormNew(props) {
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordBlurHandler,
     reset: resetPasswordInput,
-  } = Input((value) => value.trim() !== "");
+  } = Input(isNotEmpty);
 
   const {
     value: enteredCompany,
@@ -47,7 +50,7 @@ export default function UserFormNew(props) {
     valueChangeHandler: companyChangeHandler,
     inputBlurHandler: companyBlurHandler,
     reset: resetCompanyInput,
-  } = Input((value) => value.trim() !== "");
+  } = Input(isNotEmpty);
 
   const {
     value: enteredRole,
@@ -56,7 +59,7 @@ export default function UserFormNew(props) {
     valueChangeHandler: roleChangeHandler,
     inputBlurHandler: roleBlurHandler,
     reset: resetRoleInput,
-  } = Input((value) => value.trim() !== "");
+  } = Input(isNotEmpty);
 
   // let formIsValid = false;
 

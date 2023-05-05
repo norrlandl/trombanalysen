@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 function AuthForm() {
   const { data, status } = useSession();
+
   const emailInputRef = useRef("");
   const passwordInputRef = useRef("");
 
@@ -26,6 +27,10 @@ function AuthForm() {
         redirect: false,
         email: enteredEmail,
         password: enteredPassword,
+        // redirect: {
+        //   destination: "/admin",
+        //   permanent: false,
+        // },
         // callbackUrl: "/admin",
       });
 
