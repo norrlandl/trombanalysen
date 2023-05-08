@@ -1,29 +1,15 @@
 import AdminLayout from "@/components/layout/adminLayout";
 import styles from "./index.module.scss";
 import { ButtonPrimary } from "@/components/ui/buttons";
-// import { getServerSession } from "next-auth/next";
-// import { authOptions } from "../api/auth/[...nextauth]";
-// import { useSession } from "next-auth/react";
-
-import { getSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { signOut, getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Admin() {
-  // const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   getSession().then((session) => {
-  //     if (!session) {
-  //       window.location.href = "/";
-  //     } else {
-  //       setIsLoading(false);
-  //     }
-  //   });
-  // }, []);
-
-  // if (isLoading) {
-  //   return <p>Loading..</p>;
-  // } else {}
+  function logoutHandler() {
+    signOut(router.replace("/"));
+  }
 
   return (
     <AdminLayout>
@@ -33,15 +19,14 @@ export default function Admin() {
         <h4 className={styles.heading_h4}>All projects</h4>
         <h5 className={styles.heading_h5}>Sort by name, role, date</h5>
       </div>
-      <ButtonPrimary link={`/admin/users/`}>Users</ButtonPrimary>
+      <ButtonPrimary onClick={logoutHandler}>Log out</ButtonPrimary>
     </AdminLayout>
   );
 }
 
-// const { data, status } = useSession();
-
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
+  // const session = await getServerSession(ctx.req, ctx.res, authOptions);
 
   if (!session) {
     return {

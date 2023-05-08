@@ -5,7 +5,7 @@ import { RxDashboard } from "react-icons/rx";
 import { SiGoogleanalytics } from "react-icons/si";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BiMessageSquareAdd } from "react-icons/bi";
-import { ButtonPrimary } from "../ui/buttons";
+import { signOut } from "next-auth/react";
 
 const sidebarLinks = [
   {
@@ -27,12 +27,23 @@ const sidebarLinks = [
 
 export default function Sidebar() {
   const router = useRouter();
+  // const session = getServerSession();
+
+  // function handler(req, res) {
+  //   const session = getSession();
+  // }
+
+  // console.log(session);
+
+  function logoutHandler() {
+    signOut(router.replace("/"));
+  }
 
   return (
     <div>
       <aside className={styles.sidebar}>
         <div className={styles.sidebar__top}>
-          <div>Firstname Lastname Admin</div>
+          <div> Lastname Admin</div>
         </div>
 
         <ul className={styles.sidebar__list}>
@@ -67,6 +78,16 @@ export default function Sidebar() {
               </Link>
             </li>
           ))}
+          <li className={styles.sidebar__item}>
+            {/* <Link className={styles.sidebar__link} legacyBehavior>
+              <span className={styles.sidebar__icon}>
+                <BiMessageSquareAdd />
+              </span>
+            </Link> */}
+            <button className={styles.sidebar__title} onClick={logoutHandler}>
+              Log out
+            </button>
+          </li>
         </ul>
       </aside>
     </div>

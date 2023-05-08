@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 // import classes from "./auth-form.module.css";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 function AuthForm() {
   const { data, status } = useSession();
@@ -8,11 +9,7 @@ function AuthForm() {
   const emailInputRef = useRef("");
   const passwordInputRef = useRef("");
 
-  const [isLogin, setIsLogin] = useState(true);
-
-  function switchAuthModeHandler() {
-    setIsLogin((prevState) => !prevState);
-  }
+  const router = useRouter();
 
   async function submitSignIn(event) {
     event.preventDefault();
@@ -20,57 +17,30 @@ function AuthForm() {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    // New
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: enteredEmail,
+      password: enteredPassword,
+    });
 
-    try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: enteredEmail,
-        password: enteredPassword,
-        // redirect: {
-        //   destination: "/admin",
-        //   permanent: false,
-        // },
-        // callbackUrl: "/admin",
-      });
-
-      console.log(result);
-    } catch (error) {
-      console.log(error);
+    if (!result.error) {
+      console.log("inloggning lyckades!");
+      router.replace("/admin");
     }
-
-    //*** */
-
-    // const result = await signIn("credentials", {
-    //   redirect: false,
-    //   email: enteredEmail,
-    //   password: enteredPassword,
-    // });
-
-    // console.log(result);
-
-    // if (!result.error) {
-    //   // set auth state
-    // }
   }
 
   return (
     <section>
-      <h1>Status: {status}</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {/* <h1>Status: {status}</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <form onSubmit={submitSignIn}>
         <div>
           <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailInputRef} />
+          <input type="email" id="email" ref={emailInputRef} />
         </div>
         <div>
           <label htmlFor="password">Your Password</label>
-          <input
-            type="password"
-            id="password"
-            required
-            ref={passwordInputRef}
-          />
+          <input type="password" id="password" ref={passwordInputRef} />
         </div>
         <div>
           {data && <button onClick={signOut}>Log out</button>}

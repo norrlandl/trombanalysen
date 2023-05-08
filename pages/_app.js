@@ -37,12 +37,12 @@ import { SessionProvider } from "next-auth/react";
 //   );
 // }
 
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}) {
+// pageProps: { session, ...pageProps },
+// session={session}>
+
+export default function App({ Component, pageProps }) {
   return (
-    <SessionProvider session={session} refetchInterval={1 * 60}>
+    <SessionProvider session={pageProps.session}>
       <Layout>
         <Component {...pageProps} />
       </Layout>

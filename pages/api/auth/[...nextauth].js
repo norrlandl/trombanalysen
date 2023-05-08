@@ -34,8 +34,11 @@ export const authOptions = {
           },
         });
 
+        console.log(user);
+
         if (!user) {
           prisma.$disconnect();
+          console.log("No user found");
           throw new Error("No user found");
         }
 
