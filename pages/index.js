@@ -6,14 +6,13 @@ import { signOut, useSession } from "next-auth/react";
 
 function HomePage() {
   const { data, status } = useSession();
-
   console.log(data, status);
 
   return (
     <Fragment>
       {/* <Navbar /> */}
       <Start />
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 }

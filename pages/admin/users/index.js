@@ -47,7 +47,7 @@ export default function Users({ userData, props }) {
       <h1 className={styles.heading_h1}>USERS</h1>
       <UserList users={userData} onDeleteUser={deleteUserHandler} />
       <UserFormNew onCreateUser={createUserHandler} />
-      <UserForm onCreateUser={createUserHandler} />
+      {/* <UserForm onCreateUser={createUserHandler} /> */}
     </AdminLayout>
   );
 }
